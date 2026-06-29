@@ -172,8 +172,8 @@ div[data-testid="stButton"] button div {{
 
 /* عند تمرير الماوس فوق الأزرار العلوية العادية */
 div[data-testid="stButton"] button:hover {{
-  background-color: #F1F5F9 !important;
-  border-color: #F1F5F9 !important;
+  background-color: #475569 !important;
+  border-color: #475569 !important;
   box-shadow: 0 6px 16px rgba(0,0,0,0.3) !important;
 }}
 div[data-testid="stButton"] button:hover p {{
