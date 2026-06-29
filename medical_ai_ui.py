@@ -175,20 +175,23 @@ div[data-testid="column"] .stButton>button:hover {{
 
 /* ---- Centered Container for Main CTA Button ---- */
 .cta-container {{
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 100%;
-  margin-top: 30px;
-  margin-bottom: 10px;
-}}
-
-div[data-testid="stVerticalBlock"] div.stButton {{
-  display: flex;
+  display: flex !important;
   justify-content: center !important;
+  align-items: center !important;
+  width: 100% !important;
+  margin-top: 30px !important;
+  margin-bottom: 10px !important;
+  text-align: center !important;
 }}
 
-div.stButton>button {{
+/* إجبار الزر وعناصره الفرعية على التوسط التام */
+.cta-container div, .cta-container .stButton {{
+  display: flex !important;
+  justify-content: center !important;
+  margin: 0 auto !important;
+}}
+
+.cta-container button {{
   background: var(--indigo) !important;
   color: #fff !important;
   border: none !important;
@@ -197,10 +200,11 @@ div.stButton>button {{
   font-size: 18px !important;
   padding: 12px 50px !important;
   box-shadow: 0 6px 20px rgba(42, 67, 101, 0.25) !important;
-  transition: all 0.2s ease;
+  transition: all 0.2s ease !important;
   margin: 0 auto !important;
 }}
-div.stButton>button:hover {{
+
+.cta-container button:hover {{
   background: var(--navy) !important;
   border-top: 2px solid var(--pink) !important;
   box-shadow: 0 8px 25px rgba(42, 67, 101, 0.35) !important;
@@ -376,6 +380,7 @@ else:
     </div>
     """, unsafe_allow_html=True)
 
+    # استخدام الحاوية الجديدة المخصصة لفرض التوسط المطلق للزر
     st.markdown('<div class="cta-container">', unsafe_allow_html=True)
     if st.button(current_loc["begin_btn"], key="begin_analysis_main"):
         st.toast("Redirecting to Analysis Engine...", icon="🚀")
