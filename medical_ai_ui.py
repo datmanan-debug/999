@@ -139,7 +139,7 @@ html, body, .stApp {{
 }}
 
 /* ══════════════════════════════════════
-   إصلاح أزرار التحكم العلوية جذرياً (إجبار لون النص الداكن)
+   أزرار التحكم العلوية
 ══════════════════════════════════════ */
 .topbar {{
   display: flex; align-items: center; gap: 12px; padding-bottom: 14px; position: relative; z-index: 10;
@@ -150,7 +150,6 @@ html, body, .stApp {{
 }}
 .brand-label {{ font-family: 'IBM Plex Mono', monospace; font-size: 11px; letter-spacing: 2.5px; color: #94A3B8; }}
 
-/* استهداف مباشر لزر الـ Streamlit لإجبار اللون الأبيض للخلفية والنيلي للخط والبارامترات */
 div[data-testid="stButton"] button {{
   background-color: #FFFFFF !important;
   border: 1px solid #FFFFFF !important;
@@ -160,7 +159,6 @@ div[data-testid="stButton"] button {{
   transition: all 0.2s ease-in-out !important;
 }}
 
-/* إجبار النص وداخل الزر (المستطيل الأبيض) على أخذ اللون النيلي */
 div[data-testid="stButton"] button p, 
 div[data-testid="stButton"] button span,
 div[data-testid="stButton"] button div {{
@@ -170,7 +168,6 @@ div[data-testid="stButton"] button div {{
   font-size: 14px !important;
 }}
 
-/* عند تمرير الماوس فوق الأزرار العلوية العادية */
 div[data-testid="stButton"] button:hover {{
   background-color: #475569 !important;
   border-color: #475569 !important;
@@ -185,7 +182,7 @@ div[data-testid="stButton"] button:hover p {{
 }}
 
 /* ══════════════════════════════════════
-   إصلاح وإبراز زر بدء التحليل (خلفية وردية ونص أبيض فاقع ثابت)
+   زر بدء التحليل الوردي
 ══════════════════════════════════════ */
 .cta-container div[data-testid="stButton"] button {{
   background-color: var(--pink) !important;
@@ -196,7 +193,6 @@ div[data-testid="stButton"] button:hover p {{
   box-shadow: 0 8px 24px rgba(232,155,176,0.35) !important;
 }}
 
-/* إجبار نص زر بدء التحليل على اللون الأبيض */
 .cta-container div[data-testid="stButton"] button p,
 .cta-container div[data-testid="stButton"] button span {{
   color: #FFFFFF !important;
@@ -236,8 +232,8 @@ div[data-testid="stButton"] button:hover p {{
 }}
 .mcard.pink {{ border-top-color: var(--pink) !important; }}
 .mcard-icon {{ font-size: 24px; display: block; margin-bottom: 10px; }}
-.mcard-role {{ font-family: 'IBM Plex Mono', monospace; font-size: 11px; font-weight:600; color: #F43F5E; margin-bottom: 6px; }}
-.mcard-name {{ font-size: 17px; font-weight: 700; color: #FFFFFF !important; margin-bottom: 8px; }}
+.mcard-role {{ font-family: {font_main}; font-size: 12px; font-weight: 700; color: var(--pink) !important; margin-bottom: 6px; letter-spacing: 0.5px; }}
+.mcard-name {{ font-size: 17px; font-weight: 700; color: #FFFFFF !important; margin-bottom: 8px; margin-top: 2px; }}
 .mcard-body {{ font-size: 14px; line-height: 1.6; color: #CBD5E1 !important; }}
 </style>
 """, unsafe_allow_html=True)
@@ -360,7 +356,6 @@ else:
 
     st.markdown("<br><br>", unsafe_allow_html=True)
     
-    # وضع زر بدء التحليل داخل مغلف الـ CSS الجديد (cta-container) لضمان الألوان الوردية والخط الأبيض الثابت
     _, mid, _ = st.columns([1.2, 1, 1.2])
     with mid:
         st.markdown('<div class="cta-container">', unsafe_allow_html=True)
