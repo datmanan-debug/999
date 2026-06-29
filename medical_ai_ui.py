@@ -237,8 +237,8 @@ div[data-testid="stButton"] button:hover p {{
 .mcard.pink {{ border-top-color: var(--pink) !important; }}
 .mcard-icon {{ font-size: 24px; display: block; margin-bottom: 10px; }}
 .mcard-role {{ font-family: 'IBM Plex Mono', monospace; font-size: 11px; font-weight:600; color: #F43F5E; margin-bottom: 6px; }}
-.mcard-name {{ font-size: 17px; font-weight: 700; color: var(--indigo-navy) !important; margin-bottom: 8px; }}
-.mcard-body {{ font-size: 14px; line-height: 1.6; color: #334155 !important; }}
+.mcard-name {{ font-size: 17px; font-weight: 700; color: #FFFFFF !important; margin-bottom: 8px; }}
+.mcard-body {{ font-size: 14px; line-height: 1.6; color: #CBD5E1 !important; }}
 </style>
 """, unsafe_allow_html=True)
 
