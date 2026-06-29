@@ -550,7 +550,6 @@ current_loc = loc[st.session_state.lang]
 st.markdown(f"""
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Lora:wght@500;600&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&family=Cairo:wght@400;600;700&display=swap');
-
 :root {{
   --bg: #F4F7F9;
   --ink: #111E2C;
@@ -563,7 +562,6 @@ st.markdown(f"""
   --card: #FFFFFF;
   --border: #DDE4E9;
 }}
-
 html, body, .stApp {{
   background: var(--bg);
   font-family: { "'Cairo', sans-serif" if st.session_state.lang == "AR" else "'Inter', sans-serif" };
