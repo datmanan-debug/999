@@ -112,15 +112,15 @@ st.markdown(f"""
 
 /* ── TOKENS ── */
 :root {{
-  --bg:          #4B5563;   /* خلفية زرقاء داكنة مريحة ومتناسقة مع صورتك */
-  --bg-deep:     #0f172a;   
+  --bg:          #F4F7FB;   /* خلفية زرقاء داكنة مريحة ومتناسقة مع صورتك */
+  --bg-deep:     #1F2937;   
   --indigo-navy: #1E3A8A;   /* لون الخط الداكن للأزرار العلوية */
   --bg-card:     #FFFFFF;   
   --border:      rgba(255,255,255,0.08);
-  --steel:       #94A3B8;   
-  --white:       #F8FAFC;   
-  --pink:        #E89BB0;   /* اللون الوردي لزر بدء التحليل */
-  --pink-soft:   #F43F5E;
+  --steel:       #D1D5DB;   
+  --white:       #111827;   
+  --pink:        #EC4899;   /* اللون الوردي لزر بدء التحليل */
+  --pink-soft:   #FCE7F3;
 }}
 
 footer, header {{ visibility: hidden !important; }}
