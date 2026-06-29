@@ -105,6 +105,9 @@ is_ar = st.session_state.lang == "AR"
 font_main = "'Cairo', sans-serif" if is_ar else "'Inter', sans-serif"
 font_display = "'Cairo', sans-serif" if is_ar else "'Lora', serif"
 
+# تعيين اسم الشعار هنا ليكون متاحاً قبل بناء البار العلوي لتفادي الـ NameError
+brand_label_text = "MAMMOGRAM AI" if not is_ar else "ذكاء الماموجرام"
+
 # ─── CSS FIXED & OPTIMIZED ──────────────────────────────────────────────────
 st.markdown(f"""
 <style>
@@ -112,14 +115,14 @@ st.markdown(f"""
 
 /* ── TOKENS ── */
 :root {{
-  --bg:          #0F172A;   /* خلفية زرقاء داكنة مريحة ومتناسقة مع صورتك */
+  --bg:          #0F172A;
   --bg-deep:     #020617;   
-  --indigo-navy: #111827;   /* لون الخط الداكن للأزرار العلوية */
+  --indigo-navy: #111827;
   --bg-card:     #1E293B;   
   --border:      rgba(255,255,255,0.12);
   --steel:       #94A3B8;   
   --white:       #F8FAFC;   
-  --pink:        #EC4899;   /* اللون الوردي لزر بدء التحليل */
+  --pink:        #EC4899;
   --pink-soft:   #F472B6;
 }}
 
@@ -238,11 +241,10 @@ div[data-testid="stButton"] button:hover p {{
 </style>
 """, unsafe_allow_html=True)
 
-# ─── TOPBAR (تحديث منطق الأزرار الذكي) ───────────────────────────────────────────
+# ─── TOPBAR ─────────────────────────────────────────────────────────────────
 is_sub_page = st.session_state.help or st.session_state.view_titans
 
 if not is_ar:
-    # توزيع الأعمدة للإصدار الإنجليزي (إضافة عمود إضافي لزر العودة الثالث عند الحاجة)
     cols_specs = [3.5, 1.3, 1.3, 1.3, 1] if is_sub_page else [4.5, 1.4, 1.4, 1.2]
     cols = st.columns(cols_specs)
     
@@ -271,7 +273,6 @@ if not is_ar:
             if st.button("العربية 🇸🇦", key="lang_toggle"):
                 st.session_state.lang = "AR"; st.rerun()
 else:
-    # توزيع الأعمدة للإصدار العربي (إضافة عمود إضافي لزر العودة الثالث عند الحاجة)
     cols_specs = [1, 1.3, 1.3, 1.3, 3.5] if is_sub_page else [1.2, 1.4, 1.4, 4.5]
     cols = st.columns(cols_specs)
     
