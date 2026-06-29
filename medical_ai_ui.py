@@ -112,20 +112,20 @@ st.markdown(f"""
 
 /* ── TOKENS ── */
 :root {{
-  --bg:          #4A5568;   /* الرصاصي الجميل والمريح كخلفية أساسية للبرنامج */
+  --bg:          #4A5568;   /* رصاصي ثابت ومضمون للخلفية */
   --bg-deep:     #2D3748;   
-  --indigo-navy: #0F2537;   /* اللون النيلي الغامق للكتابة والنصوص الواضحة */
-  --indigo-light:#2A4365;   
-  --bg-card:     #FFFFFF;   /* كروت فريق العمل بيضاء بالكامل */
+  --indigo-navy: #1A365D;   /* اللون النيلي المطلوب للكتابة */
+  --indigo-dark: #0A192F;
+  --bg-card:     #FFFFFF;   /* خلفية الكروت بيضاء بالكامل */
   --border:      rgba(255,255,255,0.12);
   --steel:       #CBD5E0;   
   --white:       #F7FAFC;   
-  --pink:        #E89BB0;   /* اللون الوردي المعتمد لزر بدء التحليل */
+  --pink:        #E89BB0;   /* اللون الوردي لزر بدء التحليل */
   --pink-soft:   #F3C6D4;
   --pink-glow:   rgba(232,155,176,0.18);
   --pink-border: rgba(232,155,176,0.40);
-  --r-sm: 8px; --r-md: 14px; --r-lg: 22px;
-  --t: 0.25s cubic-bezier(0.4,0,0.2,1);
+  --r-sm: 8px; --r-md: 14px;
+  --t: 0.2s ease-in-out;
 }}
 
 *, *::before, *::after {{ box-sizing: border-box; }}
@@ -142,12 +142,9 @@ html, body, .stApp {{
 .block-container {{
   max-width: 1160px !important;
   padding: 1.2rem 2rem 4rem !important;
-  position: relative;
 }}
 
-/* ══════════════════════════════════════
-   ANIMATED BACKGROUND — الدوائر والشبكة المتحركة في الخلفية الرصاصية
-══════════════════════════════════════ */
+/* خلفية رصاصية تفاعلية */
 .bg-canvas {{
   position: fixed;
   inset: 0;
@@ -155,214 +152,117 @@ html, body, .stApp {{
   pointer-events: none;
   z-index: 0;
 }}
-
-.orb {{
-  position: absolute;
-  border-radius: 50%;
-  filter: blur(90px);
-  opacity: 0.25;
-}}
-
-.orb-1 {{
-  width: 550px; height: 550px;
-  background: radial-gradient(circle, #718096, transparent 70%);
-  top: -100px; left: -100px;
-  animation: drift1 20s ease-in-out infinite alternate;
-}}
-
-.orb-2 {{
-  width: 400px; height: 400px;
-  background: radial-gradient(circle, var(--pink), transparent 70%);
-  bottom: 12%; right: -60px;
-  opacity: 0.16;
-  animation: drift2 24s ease-in-out infinite alternate;
-}}
-
-.orb-3 {{
-  width: 320px; height: 320px;
-  background: radial-gradient(circle, #A0AEC0, transparent 70%);
-  top: 40%; left: 35%;
-  opacity: 0.15;
-  animation: drift3 16s ease-in-out infinite alternate;
-}}
-
-@keyframes drift1 {{
-  0%   {{ transform: translate(0px, 0px) scale(1); }}
-  50%  {{ transform: translate(70px, 50px) scale(1.05); }}
-  100% {{ transform: translate(-20px, 80px) scale(0.95); }}
-}}
-@keyframes drift2 {{
-  0%   {{ transform: translate(0px, 0px) scale(1); }}
-  60%  {{ transform: translate(-40px, -50px) scale(1.1); }}
-  100% {{ transform: translate(30px, 40px) scale(0.9); }}
-}}
-@keyframes drift3 {{
-  0%   {{ transform: translate(0px, 0px); }}
-  100% {{ transform: translate(-50px, -40px) scale(1.05); }}
-}}
-
+.orb {{ position: absolute; border-radius: 50%; filter: blur(90px); opacity: 0.2; }}
+.orb-1 {{ width: 500px; height: 500px; background: radial-gradient(circle, #718096, transparent 70%); top: -50px; left: -50px; }}
+.orb-2 {{ width: 400px; height: 400px; background: radial-gradient(circle, var(--pink), transparent 70%); bottom: 10%; right: -50px; }}
 .grid-lines {{
-  position: fixed;
-  inset: 0;
-  background-image:
-    linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
-  background-size: 65px 65px;
-  pointer-events: none;
-  z-index: 0;
-  animation: gridFade 5s ease-in-out infinite alternate;
+  position: fixed; inset: 0;
+  background-image: linear-gradient(rgba(255,255,255,0.02) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.02) 1px, transparent 1px);
+  background-size: 60px 60px; pointer-events: none; z-index: 0;
 }}
-@keyframes gridFade {{ 0% {{ opacity: 0.4; }} 100% {{ opacity: 0.8; }} }}
 
 /* ══════════════════════════════════════
-   أزرار التحكم العلوية: خلفية بيضاء ونصوص نيلي
+   أزرار التحكم العلوية الإلزامية (خلفية بيضاء خط نيلي ثابت)
 ══════════════════════════════════════ */
 .topbar {{
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  padding-bottom: 14px;
-  position: relative;
-  z-index: 10;
+  display: flex; align-items: center; gap: 12px; padding-bottom: 14px; position: relative; z-index: 10;
 }}
-
 .brand-mark {{
-  width: 42px; height: 42px;
-  border-radius: 11px;
-  background: var(--bg-deep);
-  border: 1.5px solid var(--pink-border);
-  display: flex; align-items: center; justify-content: center;
-  font-family: 'Lora', serif; font-weight: 700; font-size: 15px;
-  color: var(--white);
-  box-shadow: 0 0 18px var(--pink-glow);
-  position: relative;
-  overflow: hidden;
+  width: 42px; height: 42px; border-radius: 11px; background: var(--bg-deep); border: 1.5px solid var(--pink-border);
+  display: flex; align-items: center; justify-content: center; font-family: 'Lora', serif; font-weight: 700; font-size: 15px; color: var(--white);
 }}
-.brand-mark::after {{
-  content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 2.5px;
-  background: linear-gradient(90deg, var(--pink), var(--pink-soft));
-}}
+.brand-label {{ font-family: 'IBM Plex Mono', monospace; font-size: 11px; letter-spacing: 2.5px; color: #E2E8F0; }}
 
-.brand-label {{
-  font-family: 'IBM Plex Mono', monospace;
-  font-size: 11px; letter-spacing: 2.5px;
-  color: #E2E8F0; text-transform: uppercase;
-}}
-
-/* تطبيق ستايل موحد لجميع أزرار التحكم: خلفية بيضاء وكتابة نيلي غامق صريح */
-div[data-testid="column"] .stButton > button {{
-  background: #FFFFFF !important;
+/* استهداف مباشر وقوي لجميع أزرار التحكم العلوية لحل مشكلة النص الأبيض */
+div[data-testid="column"] button[kind="secondary"] {{
+  background-color: #FFFFFF !important;
   color: var(--indigo-navy) !important;
   border: 1px solid #FFFFFF !important;
   border-radius: var(--r-sm) !important;
-  font-size: 13px !important; font-weight: 700 !important;
-  padding: 7px 16px !important;
+  font-size: 14px !important;
+  font-weight: 700 !important;
+  padding: 8px 18px !important;
   font-family: {font_main} !important;
-  transition: var(--t) !important;
-  box-shadow: 0 3px 12px rgba(0,0,0,0.15) !important;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15) !important;
+  opacity: 1 !important;
 }}
-div[data-testid="column"] .stButton > button:hover {{
-  background: #E2E8F0 !important;
-  color: var(--indigo-navy) !important;
-  transform: translateY(-1px) !important;
+
+/* حالة الحركية عند تمرير الماوس للأزرار العلوية */
+div[data-testid="column"] button[kind="secondary"]:hover,
+div[data-testid="column"] button[kind="secondary"]:focus,
+div[data-testid="column"] button[kind="secondary"]:active {{
+  background-color: #E2E8F0 !important;
+  color: var(--indigo-dark) !important;
+  border-color: #E2E8F0 !important;
+  box-shadow: 0 6px 15px rgba(0,0,0,0.2) !important;
 }}
 
 .hr-line {{
-  height: 1px;
-  background: linear-gradient(90deg, transparent, var(--border), var(--pink-border), var(--border), transparent);
-  margin: 4px 0 20px;
+  height: 1px; background: linear-gradient(90deg, transparent, var(--border), var(--pink-border), var(--border), transparent); margin: 4px 0 20px;
 }}
 
 /* ══════════════════════════════════════
-   HERO SECTION
+   زر بدء التحليل (خلفية وردية خط أبيض ثابت)
 ══════════════════════════════════════ */
-.hero {{ text-align: center; padding: 40px 20px 20px; position: relative; z-index: 5; }}
-.hero-eyebrow {{
-  display: inline-flex; align-items: center; gap: 8px;
-  font-family: 'IBM Plex Mono', monospace; font-size: 11px; letter-spacing: 3px;
-  color: var(--pink); padding: 6px 18px; border: 1px solid var(--pink-border);
-  border-radius: 30px; background: var(--pink-glow); margin-bottom: 22px;
+.cta-col button {{
+  background-color: var(--pink) !important;
+  color: #FFFFFF !important;
+  border: 2px solid var(--pink) !important;
+  border-radius: 50px !important;
+  font-size: 16px !important;
+  font-weight: 700 !important;
+  padding: 14px 42px !important;
+  font-family: {font_main} !important;
+  box-shadow: 0 6px 22px rgba(232,155,176,0.4) !important;
+  display: block !important;
+  width: 100% !important;
+  opacity: 1 !important;
 }}
-.hero-eyebrow .dot {{ width: 6px; height: 6px; border-radius: 50%; background: var(--pink); }}
 
-.hero-title {{ font-family: {font_display}; font-size: clamp(26px, 4vw, 44px); font-weight: 700; color: var(--white); line-height: 1.25; max-width: 820px; margin: 0 auto 10px; }}
-.hero-accent {{
-  display: block;
-  background: linear-gradient(120deg, var(--pink) 0%, var(--pink-soft) 55%, #fff 100%);
-  -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; margin-top: 6px;
+.cta-col button:hover, .cta-col button:focus, .cta-col button:active {{
+  background-color: var(--pink-soft) !important;
+  color: var(--indigo-navy) !important;
+  border-color: var(--pink-soft) !important;
+  box-shadow: 0 8px 28px rgba(232,155,176,0.6) !important;
+  transform: translateY(-2px);
 }}
+
+/* ══════════════════════════════════════
+   HERO & STATS
+══════════════════════════════════════ */
+.hero {{ text-align: center; padding: 30px 20px 10px; position: relative; z-index: 5; }}
+.hero-title {{ font-family: {font_display}; font-size: clamp(26px, 4vw, 44px); font-weight: 700; color: var(--white); line-height: 1.25; }}
+.hero-accent {{ display: block; background: linear-gradient(120deg, var(--pink) 0%, var(--pink-soft) 55%, #fff 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }}
 .hero-sub {{ color: #E2E8F0; font-size: 16px; line-height: 1.8; max-width: 650px; margin: 18px auto 0; }}
-.badge-wrap {{ display:flex; justify-content:center; margin-top:26px; }}
-.badge {{ display:inline-flex; align-items:center; gap:10px; padding: 10px 22px; border: 1px solid var(--border); background: var(--bg-deep); border-radius: 40px; font-size: 13px; color: #E2E8F0; }}
+.badge-wrap {{ display:flex; justify-content:center; margin-top:22px; }}
+.badge {{ display:inline-flex; align-items:center; gap:10px; padding: 10px 22px; border: 1px solid var(--border); background: var(--bg-deep); border-radius: 40px; font-size: 13px; }}
 
-/* صف البيانات المعدلة (الإنترنت ومستشفى بعقوبة) */
-.stats-row {{ display: flex; max-width: 500px; margin: 35px auto 0; border: 1px solid var(--border); border-radius: var(--r-md); overflow: hidden; position: relative; z-index: 5; }}
+.stats-row {{ display: flex; max-width: 480px; margin: 35px auto 0; border: 1px solid var(--border); border-radius: 14px; overflow: hidden; position: relative; z-index: 5; }}
 .stat-item {{ flex: 1; padding: 16px 14px; text-align: center; background: var(--bg-deep); border-right: 1px solid var(--border); }}
 .stat-item:last-child {{ border-right: none; }}
 .stat-val {{ font-size: 16px; font-weight: 700; color: var(--white); }}
-.stat-lbl {{ font-size: 11px; color: var(--steel); margin-top: 4px; text-transform: uppercase; }}
+.stat-lbl {{ font-size: 11px; color: var(--steel); margin-top: 4px; }}
 
-/* زر "بدء التحليل": خلفية وردية (Pink) ونصوص بيضاء */
-.cta-col .stButton > button {{
-  background: var(--pink) !important;
-  color: #FFFFFF !important;
-  border: none !important;
-  border-radius: 50px !important;
-  font-size: 16px !important; font-weight: 700 !important;
-  padding: 14px 40px !important;
-  box-shadow: 0 6px 20px rgba(232,155,176,0.35) !important;
-  transition: all 0.25s ease !important;
-  font-family: {font_main} !important;
-}}
-.cta-col .stButton > button:hover {{
-  background: var(--pink-soft) !important;
-  color: var(--indigo-navy) !important; /* يتحول النص لنيلي عند التمرير لشكل جذاب */
-  transform: translateY(-3px) scale(1.02) !important;
-  box-shadow: 0 10px 30px rgba(232,155,176,0.5) !important;
-}}
-
-/* ══════════════════════════════════════
-   لوحة الفريق: كروت بيضاء وكتابة نيلي
-══════════════════════════════════════ */
+/* لوحة الفريق */
 .sec-head {{ text-align: center; margin: 30px 0 25px; position: relative; z-index: 5; }}
-.sec-title {{ font-family: {font_display}; font-size: 28px; font-weight: 700; color: var(--white); margin-bottom: 6px; }}
+.sec-title {{ font-family: {font_display}; font-size: 28px; font-weight: 700; color: var(--white); }}
 .sec-sub {{ font-size: 14px; color: #E2E8F0; }}
 
 .mcard {{
-  background: var(--bg-card) !important; /* خلفية بيضاء بالكامل */
-  border: 1px solid #E2E8F0;
-  border-top: 4px solid var(--indigo-light) !important;
-  border-radius: var(--r-md);
-  padding: 24px 22px;
-  margin-bottom: 16px;
-  transition: var(--t);
-  position: relative; z-index: 5;
-  box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+  background: var(--bg-card) !important; border: 1px solid #E2E8F0; border-top: 4px solid var(--indigo-light) !important;
+  border-radius: 14px; padding: 24px 22px; margin-bottom: 16px; position: relative; z-index: 5; box-shadow: 0 4px 15px rgba(0,0,0,0.1);
 }}
 .mcard.pink {{ border-top-color: var(--pink) !important; }}
-
-.mcard:hover {{
-  transform: translateY(-4px);
-  box-shadow: 0 10px 30px rgba(0,0,0,0.2);
-}}
-
-/* نصوص الكروت باللون النيلي الغامق الفخم والواضح جداً */
 .mcard-icon {{ font-size: 24px; display: block; margin-bottom: 10px; }}
-.mcard-role {{ font-family: 'IBM Plex Mono', monospace; font-size: 11px; font-weight:600; letter-spacing: 1.5px; text-transform: uppercase; color: var(--pink); margin-bottom: 6px; }}
+.mcard-role {{ font-family: 'IBM Plex Mono', monospace; font-size: 11px; font-weight:600; color: var(--pink); margin-bottom: 6px; }}
 .mcard-name {{ font-size: 17px; font-weight: 700; color: var(--indigo-navy) !important; margin-bottom: 8px; }}
 .mcard-body {{ font-size: 14px; line-height: 1.6; color: #4A5568 !important; }}
-
-/* Scrollbar */
-::-webkit-scrollbar {{ width: 6px; }}
-::-webkit-scrollbar-track {{ background: var(--bg-deep); }}
-::-webkit-scrollbar-thumb {{ background: #718096; border-radius: 3px; }}
 </style>
 
 <div class="bg-canvas">
   <div class="grid-lines"></div>
   <div class="orb orb-1"></div>
   <div class="orb orb-2"></div>
-  <div class="orb orb-3"></div>
 </div>
 """, unsafe_allow_html=True)
 
@@ -374,29 +274,29 @@ if not is_ar:
     with c0:
         st.markdown(f'<div class="topbar"><div class="brand-mark">MA</div><span class="brand-label">{brand_label_text}</span></div>', unsafe_allow_html=True)
     with c1:
-        if st.button(C["titans_btn"], key="titans_toggle"):
+        if st.button(C["titans_btn"], key="titans_toggle", kind="secondary"):
             st.session_state.view_titans = not st.session_state.view_titans
             st.session_state.help = False
     with c2:
         lbl = C["back_btn"] if (st.session_state.help or st.session_state.view_titans) else C["help_btn"]
-        if st.button(lbl, key="help_toggle"):
+        if st.button(lbl, key="help_toggle", kind="secondary"):
             st.session_state.help = not st.session_state.help
             st.session_state.view_titans = False
     with c4:
-        if st.button("العربية 🇸🇦", key="lang_toggle"):
+        if st.button("العربية 🇸🇦", key="lang_toggle", kind="secondary"):
             st.session_state.lang = "AR"; st.rerun()
 else:
     c0, _, c2, c3, c4 = st.columns([1.5, 1, 1.4, 1.4, 4])
     with c0:
-        if st.button("English 🇬🇧", key="lang_toggle"):
+        if st.button("English 🇬🇧", key="lang_toggle", kind="secondary"):
             st.session_state.lang = "EN"; st.rerun()
     with c2:
         lbl = C["back_btn"] if (st.session_state.help or st.session_state.view_titans) else C["help_btn"]
-        if st.button(lbl, key="help_toggle"):
+        if st.button(lbl, key="help_toggle", kind="secondary"):
             st.session_state.help = not st.session_state.help
             st.session_state.view_titans = False
     with c3:
-        if st.button(C["titans_btn"], key="titans_toggle"):
+        if st.button(C["titans_btn"], key="titans_toggle", kind="secondary"):
             st.session_state.view_titans = not st.session_state.view_titans
             st.session_state.help = False
     with c4:
@@ -404,7 +304,7 @@ else:
 
 st.markdown('<div class="hr-line"></div>', unsafe_allow_html=True)
 
-# ─── VIEW 1: TEAM (كروت بيضاء وكتابة نيلي) ───────────────────────────────────
+# ─── VIEW 1: TEAM ───────────────────────────────────────────────────────────
 if st.session_state.view_titans:
     sub_txt = "The people behind the intelligence" if not is_ar else "الفريق الهندسي المطور للنظام"
     st.markdown(f'<div class="sec-head"><div class="sec-title">{C["titans_title"]}</div><div class="sec-sub">{sub_txt}</div></div>', unsafe_allow_html=True)
@@ -418,7 +318,7 @@ if st.session_state.view_titans:
     ]
     right_cards = [
         ("🔬", r["supervisor2_role"], r["supervisor2"], "Co-supervision, engineering review, and technical research verification.", True),
-        ("📊", r["researcher_role"], r["researcher"], "Data science research, preprocessing pipelines, CBIS-DDSM dataset analysis.", False),
+        ("📊", r["researcher_role"], r["researcher"], "Data science research, preprocessing pipelines, dataset analysis.", False),
         ("💻", r["programmer_role"], r["programmer"], "Backend systems development, integration scripts and logic testing.", False),
     ]
 
@@ -442,7 +342,7 @@ if st.session_state.view_titans:
               <div class="mcard-body">{body}</div>
             </div>""", unsafe_allow_html=True)
 
-# ─── VIEW 2: HELP (كروت بيضاء وكتابة نيلي) ───────────────────────────────────
+# ─── VIEW 2: HELP ───────────────────────────────────────────────────────────
 elif st.session_state.help:
     sub_txt = "System architecture, datasets, and clinical workflow" if not is_ar else "معمارية النظام، قواعد البيانات، وسير العمل السريري"
     st.markdown(f'<div class="sec-head"><div class="sec-title">{C["about_title"]}</div><div class="sec-sub">{sub_txt}</div></div>', unsafe_allow_html=True)
@@ -477,7 +377,6 @@ else:
     </div>
     """, unsafe_allow_html=True)
 
-    # توليد صف البيانات الجديد المعدل (الإنترنت ومستشفى بعقوبة)
     stats_html = '<div class="stats-row">' + "".join(
         f'<div class="stat-item"><div class="stat-val">{v}</div><div class="stat-lbl">{l}</div></div>'
         for v, l in C["stats"]
@@ -486,7 +385,7 @@ else:
 
     st.markdown("<br><br>", unsafe_allow_html=True)
     
-    # سنترة زر بدء التحليل هندسياً باللون الوردي الجديد
+    # سنترة زر بدء التحليل بشكل فيت هندسي
     _, mid, _ = st.columns([1.3, 1, 1.3])
     with mid:
         st.markdown('<div class="cta-col">', unsafe_allow_html=True)
