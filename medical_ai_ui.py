@@ -45,14 +45,12 @@ loc = {
             "ai_dev_role": "AI Engineer & Developer"
         },
         "stats": [
-            ("CBIS-DDSM", "Dataset"),
-            ("50×50px", "Input Size"),
-            ("25", "Epochs"),
-            ("Adam", "Optimizer"),
+            ("Online", "Dataset"),
+            ("Baqubah Hospital", "Dataset"),
         ],
         "help_sections": [
             ("🩺", "Project Overview", "Supports physicians by classifying mammogram images to assist with early breast cancer detection.", False),
-            ("📊", "Datasets", "Trained, tested, and evaluated using CBIS-DDSM combined with hospital-sourced mammogram images.", False),
+            ("📊", "Datasets", "Trained, tested, and evaluated using Online dataset combined with hospital-sourced mammogram images.", False),
             ("🧠", "AI Model", "A convolutional network built with TensorFlow/Keras, using custom Conv2D, Dense, and MaxPool structures.", True),
             ("⚙", "Training Config", "Image 50×50 · 25 epochs · batch 75 · Adam optimizer · binary cross-entropy loss.", False),
             ("💻", "Technologies", "Python · Streamlit · TensorFlow · Keras · OpenCV · NumPy · Pandas · Pillow", False),
@@ -74,7 +72,7 @@ loc = {
         "roles": {
             "supervisor1": "ا.م.د. وسام حيدر مهدي",
             "supervisor1_role": "المشرف",
-            "supervisor2": "ا.م. مهاي عباس حطيحط",
+            "supervisor2": "ا.م. مها عباس حطيحط",
             "supervisor2_role": "المشرفة",
             "leader": "اطمئنان كريم",
             "leader_role": "قائد الفريق",
@@ -88,14 +86,12 @@ loc = {
             "ai_dev_role": "مطور الذكاء الاصطناعي"
         },
         "stats": [
-            ("CBIS-DDSM", "قاعدة البيانات"),
-            ("50×50px", "حجم الإدخال"),
-            ("25", "حقبة تدريب"),
-            ("Adam", "المحسِّن"),
+            ("الإنترنت (Online)", "بيانات"),
+            ("مستشفى بعقوبة", "بيانات"),
         ],
         "help_sections": [
             ("🩺", "نظرة عامة", "يدعم الأطباء من خلال تصنيف صور الماموجرام للمساعدة في الكشف المبكر عن سرطان الثدي.", False),
-            ("📊", "مجموعات البيانات", "تم التدريب والاختبار باستخدام CBIS-DDSM مدمجة مع صور مستشفيات حقيقية.", False),
+            ("📊", "مجموعات البيانات", "تم التدريب والاختبار باستخدام بيانات الإنترنت مدمجة مع صور مستشفيات حقيقية.", False),
             ("🧠", "نموذج الذكاء الاصطناعي", "شبكة عصبية تلافيفية مبنية بـ TensorFlow و Keras، بطبقات تلافيفية وكثيفة و MaxPool.", True),
             ("⚙", "معاملات التدريب", "حجم الصورة 50×50 · 25 حقبة · دفعة 75 · محسن Adam · دالة الإنتروبيا المتقاطعة الثنائية.", False),
             ("💻", "التقنيات", "Python · Streamlit · TensorFlow · Keras · OpenCV · NumPy · Pandas · Pillow", False),
@@ -116,15 +112,15 @@ st.markdown(f"""
 
 /* ── TOKENS ── */
 :root {{
-  --bg:          #4A5568;   /* رصاصي متوسط — الخلفية الأساسية */
+  --bg:          #4A5568;   /* الرصاصي الجميل والمريح كخلفية أساسية للبرنامج */
   --bg-deep:     #2D3748;   
-  --indigo-navy: #1A365D;   /* اللون النيلي الفخم للكتابة */
+  --indigo-navy: #0F2537;   /* اللون النيلي الغامق للكتابة والنصوص الواضحة */
   --indigo-light:#2A4365;   
-  --bg-card:     #FFFFFF;   /* كروت بيضاء تماماً بناءً على طلبك */
+  --bg-card:     #FFFFFF;   /* كروت فريق العمل بيضاء بالكامل */
   --border:      rgba(255,255,255,0.12);
-  --steel:       #CBD5E0;   /* نص رصاصي فاتح للبيانات الفرعية الهير */
+  --steel:       #CBD5E0;   
   --white:       #F7FAFC;   
-  --pink:        #E89BB0;
+  --pink:        #E89BB0;   /* اللون الوردي المعتمد لزر بدء التحليل */
   --pink-soft:   #F3C6D4;
   --pink-glow:   rgba(232,155,176,0.18);
   --pink-border: rgba(232,155,176,0.40);
@@ -150,7 +146,7 @@ html, body, .stApp {{
 }}
 
 /* ══════════════════════════════════════
-   ANIMATED BACKGROUND — الدوائر والشبكة المتحركة
+   ANIMATED BACKGROUND — الدوائر والشبكة المتحركة في الخلفية الرصاصية
 ══════════════════════════════════════ */
 .bg-canvas {{
   position: fixed;
@@ -219,7 +215,7 @@ html, body, .stApp {{
 @keyframes gridFade {{ 0% {{ opacity: 0.4; }} 100% {{ opacity: 0.8; }} }}
 
 /* ══════════════════════════════════════
-   TOPBAR & HEADER BUTTONS (بيضاء ونصوص نيلي)
+   أزرار التحكم العلوية: خلفية بيضاء ونصوص نيلي
 ══════════════════════════════════════ */
 .topbar {{
   display: flex;
@@ -253,21 +249,20 @@ html, body, .stApp {{
   color: #E2E8F0; text-transform: uppercase;
 }}
 
-/* تعديل أزرار التحكم العلوي: خلفية بيضاء ونصوص نيلي */
+/* تطبيق ستايل موحد لجميع أزرار التحكم: خلفية بيضاء وكتابة نيلي غامق صريح */
 div[data-testid="column"] .stButton > button {{
   background: #FFFFFF !important;
   color: var(--indigo-navy) !important;
   border: 1px solid #FFFFFF !important;
   border-radius: var(--r-sm) !important;
-  font-size: 13px !important; font-weight: 600 !important;
+  font-size: 13px !important; font-weight: 700 !important;
   padding: 7px 16px !important;
   font-family: {font_main} !important;
   transition: var(--t) !important;
-  box-shadow: 0 2px 10px rgba(0,0,0,0.15) !important;
+  box-shadow: 0 3px 12px rgba(0,0,0,0.15) !important;
 }}
 div[data-testid="column"] .stButton > button:hover {{
-  background: var(--pink-soft) !important;
-  border-color: var(--pink) !important;
+  background: #E2E8F0 !important;
   color: var(--indigo-navy) !important;
   transform: translateY(-1px) !important;
 }}
@@ -279,7 +274,7 @@ div[data-testid="column"] .stButton > button:hover {{
 }}
 
 /* ══════════════════════════════════════
-   HERO & MAIN CTA (زر بدء التحليل أبيض بنيلي)
+   HERO SECTION
 ══════════════════════════════════════ */
 .hero {{ text-align: center; padding: 40px 20px 20px; position: relative; z-index: 5; }}
 .hero-eyebrow {{
@@ -300,46 +295,43 @@ div[data-testid="column"] .stButton > button:hover {{
 .badge-wrap {{ display:flex; justify-content:center; margin-top:26px; }}
 .badge {{ display:inline-flex; align-items:center; gap:10px; padding: 10px 22px; border: 1px solid var(--border); background: var(--bg-deep); border-radius: 40px; font-size: 13px; color: #E2E8F0; }}
 
-/* Stats */
-.stats-row {{ display: flex; max-width: 660px; margin: 35px auto 0; border: 1px solid var(--border); border-radius: var(--r-md); overflow: hidden; position: relative; z-index: 5; }}
+/* صف البيانات المعدلة (الإنترنت ومستشفى بعقوبة) */
+.stats-row {{ display: flex; max-width: 500px; margin: 35px auto 0; border: 1px solid var(--border); border-radius: var(--r-md); overflow: hidden; position: relative; z-index: 5; }}
 .stat-item {{ flex: 1; padding: 16px 14px; text-align: center; background: var(--bg-deep); border-right: 1px solid var(--border); }}
 .stat-item:last-child {{ border-right: none; }}
-.stat-val {{ font-family: 'IBM Plex Mono', monospace; font-size: 17px; font-weight: 600; color: var(--white); }}
+.stat-val {{ font-size: 16px; font-weight: 700; color: var(--white); }}
 .stat-lbl {{ font-size: 11px; color: var(--steel); margin-top: 4px; text-transform: uppercase; }}
 
-/* زر بدء التحليل الرئيسي: أبيض بالكامل ونصوص نيلي */
+/* زر "بدء التحليل": خلفية وردية (Pink) ونصوص بيضاء */
 .cta-col .stButton > button {{
-  background: #FFFFFF !important;
-  color: var(--indigo-navy) !important;
+  background: var(--pink) !important;
+  color: #FFFFFF !important;
   border: none !important;
   border-radius: 50px !important;
   font-size: 16px !important; font-weight: 700 !important;
-  padding: 14px 36px !important;
-  box-shadow: 0 8px 25px rgba(0,0,0,0.2) !important;
+  padding: 14px 40px !important;
+  box-shadow: 0 6px 20px rgba(232,155,176,0.35) !important;
   transition: all 0.25s ease !important;
   font-family: {font_main} !important;
 }}
 .cta-col .stButton > button:hover {{
   background: var(--pink-soft) !important;
-  color: var(--indigo-navy) !important;
+  color: var(--indigo-navy) !important; /* يتحول النص لنيلي عند التمرير لشكل جذاب */
   transform: translateY(-3px) scale(1.02) !important;
-  box-shadow: 0 12px 35px rgba(0,0,0,0.3) !important;
+  box-shadow: 0 10px 30px rgba(232,155,176,0.5) !important;
 }}
 
 /* ══════════════════════════════════════
-   SECTION HEADER
+   لوحة الفريق: كروت بيضاء وكتابة نيلي
 ══════════════════════════════════════ */
 .sec-head {{ text-align: center; margin: 30px 0 25px; position: relative; z-index: 5; }}
 .sec-title {{ font-family: {font_display}; font-size: 28px; font-weight: 700; color: var(--white); margin-bottom: 6px; }}
 .sec-sub {{ font-size: 14px; color: #E2E8F0; }}
 
-/* ══════════════════════════════════════
-   لوحة الفريق وموديول المساعدة: كروت بيضاء وكتابة نيلي
-══════════════════════════════════════ */
 .mcard {{
-  background: var(--bg-card) !important; /* خلفية بيضاء */
+  background: var(--bg-card) !important; /* خلفية بيضاء بالكامل */
   border: 1px solid #E2E8F0;
-  border-top: 4px solid var(--indigo-light) !important; /* خط علوي نيلي */
+  border-top: 4px solid var(--indigo-light) !important;
   border-radius: var(--r-md);
   padding: 24px 22px;
   margin-bottom: 16px;
@@ -347,14 +339,14 @@ div[data-testid="column"] .stButton > button:hover {{
   position: relative; z-index: 5;
   box-shadow: 0 4px 15px rgba(0,0,0,0.1);
 }}
-.mcard.pink {{ border-top-color: var(--pink) !important; }} /* المشرفين بخط وردي مميز */
+.mcard.pink {{ border-top-color: var(--pink) !important; }}
 
 .mcard:hover {{
   transform: translateY(-4px);
   box-shadow: 0 10px 30px rgba(0,0,0,0.2);
 }}
 
-/* نصوص الكروت: نيلي داكن وواضح */
+/* نصوص الكروت باللون النيلي الغامق الفخم والواضح جداً */
 .mcard-icon {{ font-size: 24px; display: block; margin-bottom: 10px; }}
 .mcard-role {{ font-family: 'IBM Plex Mono', monospace; font-size: 11px; font-weight:600; letter-spacing: 1.5px; text-transform: uppercase; color: var(--pink); margin-bottom: 6px; }}
 .mcard-name {{ font-size: 17px; font-weight: 700; color: var(--indigo-navy) !important; margin-bottom: 8px; }}
@@ -485,6 +477,7 @@ else:
     </div>
     """, unsafe_allow_html=True)
 
+    # توليد صف البيانات الجديد المعدل (الإنترنت ومستشفى بعقوبة)
     stats_html = '<div class="stats-row">' + "".join(
         f'<div class="stat-item"><div class="stat-val">{v}</div><div class="stat-lbl">{l}</div></div>'
         for v, l in C["stats"]
@@ -493,7 +486,7 @@ else:
 
     st.markdown("<br><br>", unsafe_allow_html=True)
     
-    # تقسيم الأعمدة بالتناظر الهندسي لوضع الزر في المنتصف الفيت تماماً
+    # سنترة زر بدء التحليل هندسياً باللون الوردي الجديد
     _, mid, _ = st.columns([1.3, 1, 1.3])
     with mid:
         st.markdown('<div class="cta-col">', unsafe_allow_html=True)
