@@ -45,7 +45,7 @@ loc = {
             "ai_dev_role": "AI Engineer & Developer"
         },
         "stats": [
-            ("Online", "Dataset"),
+            ("CBIS-DDSM", "Dataset"),
             ("Baqubah Hospital", "Dataset"),
         ],
         "help_sections": [
@@ -86,7 +86,7 @@ loc = {
             "ai_dev_role": "مطور الذكاء الاصطناعي"
         },
         "stats": [
-            ("الإنترنت (Online)", "بيانات"),
+            ("الإنترنت (CBIS-DDSM)", "بيانات"),
             ("مستشفى بعقوبة", "بيانات"),
         ],
         "help_sections": [
