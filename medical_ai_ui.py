@@ -123,26 +123,26 @@ st.markdown(f"""
    TOKENS
 ═══════════════════════════════════════════ */
 :root {{
-  --navy:       #0D1F35;
-  --navy-mid:   #162B45;
-  --slate:      #2C3E55;
-  --slate-light:#3D5166;
-  --steel:      #8FA3B1;
-  --fog:        #C8D6E0;
-  --ghost:      #EEF3F7;
-  --white:      #F8FAFC;
+  --navy:       #1C1F26;
+  --navy-mid:   #252930;
+  --slate:      #32373F;
+  --slate-light:#444B55;
+  --steel:      #9AA3AE;
+  --fog:        #C9D0D8;
+  --ghost:      #EAEDF0;
+  --white:      #F5F7F9;
   --pink:       #E89BB0;
   --pink-soft:  #F3C6D4;
-  --pink-glow:  rgba(232,155,176,0.18);
-  --pink-line:  rgba(232,155,176,0.45);
-  --accent:     #3B82F6;
+  --pink-glow:  rgba(232,155,176,0.15);
+  --pink-line:  rgba(232,155,176,0.40);
+  --accent:     #7B8FA6;
   --success:    #34D399;
   --radius-sm:  8px;
   --radius-md:  14px;
   --radius-lg:  22px;
-  --shadow-sm:  0 2px 8px rgba(13,31,53,0.12);
-  --shadow-md:  0 6px 24px rgba(13,31,53,0.18);
-  --shadow-lg:  0 16px 48px rgba(13,31,53,0.25);
+  --shadow-sm:  0 2px 8px rgba(0,0,0,0.18);
+  --shadow-md:  0 6px 24px rgba(0,0,0,0.22);
+  --shadow-lg:  0 16px 48px rgba(0,0,0,0.30);
   --transition: 0.28s cubic-bezier(0.4,0,0.2,1);
 }}
 
@@ -173,9 +173,9 @@ footer, header {{ visibility: hidden !important; }}
   position: fixed;
   inset: 0;
   background:
-    radial-gradient(ellipse 60% 50% at 20% 20%, rgba(59,130,246,0.06) 0%, transparent 70%),
-    radial-gradient(ellipse 50% 40% at 80% 80%, rgba(232,155,176,0.07) 0%, transparent 65%),
-    radial-gradient(ellipse 40% 60% at 60% 10%, rgba(22,43,69,0.9) 0%, transparent 60%);
+    radial-gradient(ellipse 60% 50% at 20% 20%, rgba(120,130,145,0.07) 0%, transparent 70%),
+    radial-gradient(ellipse 50% 40% at 80% 80%, rgba(232,155,176,0.06) 0%, transparent 65%),
+    radial-gradient(ellipse 40% 60% at 60% 10%, rgba(37,41,48,0.9) 0%, transparent 60%);
   pointer-events: none;
   z-index: 0;
   animation: meshPulse 8s ease-in-out infinite alternate;
@@ -239,9 +239,9 @@ footer, header {{ visibility: hidden !important; }}
    TOPBAR BUTTONS (all stButtons in top cols)
 ═══════════════════════════════════════════ */
 div[data-testid="column"] .stButton > button {{
-  background: rgba(44,62,85,0.5) !important;
+  background: rgba(50,55,63,0.55) !important;
   color: var(--fog) !important;
-  border: 1px solid rgba(143,163,177,0.2) !important;
+  border: 1px solid rgba(154,163,174,0.2) !important;
   border-radius: var(--radius-sm) !important;
   font-size: 13px !important;
   font-weight: 500 !important;
@@ -368,7 +368,7 @@ div[data-testid="column"] .stButton > button:hover {{
   gap: 10px;
   padding: 10px 22px;
   border: 1px solid var(--pink-line);
-  background: linear-gradient(135deg, rgba(22,43,69,0.8), rgba(44,62,85,0.5));
+  background: linear-gradient(135deg, rgba(37,41,48,0.85), rgba(50,55,63,0.6));
   backdrop-filter: blur(10px);
   border-radius: 40px;
   font-size: 13px;
@@ -397,8 +397,8 @@ div[data-testid="column"] .stButton > button:hover {{
   flex: 1;
   padding: 18px 16px;
   text-align: center;
-  background: rgba(22,43,69,0.6);
-  border-right: 1px solid rgba(143,163,177,0.1);
+  background: rgba(37,41,48,0.7);
+  border-right: 1px solid rgba(150,160,170,0.1);
   transition: var(--transition);
   position: relative;
   overflow: hidden;
@@ -499,8 +499,8 @@ div[data-testid="column"] .stButton > button[key="begin_analysis_main"] {{
 }}
 
 .mcard {{
-  background: linear-gradient(145deg, rgba(22,43,69,0.9), rgba(13,31,53,0.95));
-  border: 1px solid rgba(143,163,177,0.12);
+  background: linear-gradient(145deg, rgba(37,41,48,0.95), rgba(28,31,38,0.98));
+  border: 1px solid rgba(150,160,170,0.12);
   border-radius: var(--radius-md);
   padding: 24px 22px;
   margin-bottom: 16px;
