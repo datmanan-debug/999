@@ -112,15 +112,15 @@ st.markdown(f"""
 
 /* ── TOKENS ── */
 :root {{
-  --bg:          #4A5568;   /* رصاصي ثابت ومضمون للخلفية */
+  --bg:          #4A5568;   
   --bg-deep:     #2D3748;   
-  --indigo-navy: #1A365D;   /* اللون النيلي المطلوب للكتابة */
+  --indigo-navy: #1A365D;   
   --indigo-dark: #0A192F;
-  --bg-card:     #FFFFFF;   /* خلفية الكروت بيضاء بالكامل */
+  --bg-card:     #FFFFFF;   
   --border:      rgba(255,255,255,0.12);
   --steel:       #CBD5E0;   
   --white:       #F7FAFC;   
-  --pink:        #E89BB0;   /* اللون الوردي لزر بدء التحليل */
+  --pink:        #E89BB0;   
   --pink-soft:   #F3C6D4;
   --pink-glow:   rgba(232,155,176,0.18);
   --pink-border: rgba(232,155,176,0.40);
@@ -146,11 +146,7 @@ html, body, .stApp {{
 
 /* خلفية رصاصية تفاعلية */
 .bg-canvas {{
-  position: fixed;
-  inset: 0;
-  overflow: hidden;
-  pointer-events: none;
-  z-index: 0;
+  position: fixed; inset: 0; overflow: hidden; pointer-events: none; z-index: 0;
 }}
 .orb {{ position: absolute; border-radius: 50%; filter: blur(90px); opacity: 0.2; }}
 .orb-1 {{ width: 500px; height: 500px; background: radial-gradient(circle, #718096, transparent 70%); top: -50px; left: -50px; }}
@@ -173,8 +169,8 @@ html, body, .stApp {{
 }}
 .brand-label {{ font-family: 'IBM Plex Mono', monospace; font-size: 11px; letter-spacing: 2.5px; color: #E2E8F0; }}
 
-/* استهداف مباشر وقوي لجميع أزرار التحكم العلوية لحل مشكلة النص الأبيض */
-div[data-testid="column"] button[kind="secondary"] {{
+/* استهداف الأزرار العلوية بالـ CSS وإجبار الألوان */
+div[data-testid="column"] button {{
   background-color: #FFFFFF !important;
   color: var(--indigo-navy) !important;
   border: 1px solid #FFFFFF !important;
@@ -184,13 +180,11 @@ div[data-testid="column"] button[kind="secondary"] {{
   padding: 8px 18px !important;
   font-family: {font_main} !important;
   box-shadow: 0 4px 12px rgba(0,0,0,0.15) !important;
-  opacity: 1 !important;
 }}
 
-/* حالة الحركية عند تمرير الماوس للأزرار العلوية */
-div[data-testid="column"] button[kind="secondary"]:hover,
-div[data-testid="column"] button[kind="secondary"]:focus,
-div[data-testid="column"] button[kind="secondary"]:active {{
+div[data-testid="column"] button:hover,
+div[data-testid="column"] button:focus,
+div[data-testid="column"] button:active {{
   background-color: #E2E8F0 !important;
   color: var(--indigo-dark) !important;
   border-color: #E2E8F0 !important;
@@ -216,7 +210,6 @@ div[data-testid="column"] button[kind="secondary"]:active {{
   box-shadow: 0 6px 22px rgba(232,155,176,0.4) !important;
   display: block !important;
   width: 100% !important;
-  opacity: 1 !important;
 }}
 
 .cta-col button:hover, .cta-col button:focus, .cta-col button:active {{
@@ -274,29 +267,29 @@ if not is_ar:
     with c0:
         st.markdown(f'<div class="topbar"><div class="brand-mark">MA</div><span class="brand-label">{brand_label_text}</span></div>', unsafe_allow_html=True)
     with c1:
-        if st.button(C["titans_btn"], key="titans_toggle", kind="secondary"):
+        if st.button(C["titans_btn"], key="titans_toggle"):
             st.session_state.view_titans = not st.session_state.view_titans
             st.session_state.help = False
     with c2:
         lbl = C["back_btn"] if (st.session_state.help or st.session_state.view_titans) else C["help_btn"]
-        if st.button(lbl, key="help_toggle", kind="secondary"):
+        if st.button(lbl, key="help_toggle"):
             st.session_state.help = not st.session_state.help
             st.session_state.view_titans = False
     with c4:
-        if st.button("العربية 🇸🇦", key="lang_toggle", kind="secondary"):
+        if st.button("العربية 🇸🇦", key="lang_toggle"):
             st.session_state.lang = "AR"; st.rerun()
 else:
     c0, _, c2, c3, c4 = st.columns([1.5, 1, 1.4, 1.4, 4])
     with c0:
-        if st.button("English 🇬🇧", key="lang_toggle", kind="secondary"):
+        if st.button("English 🇬🇧", key="lang_toggle"):
             st.session_state.lang = "EN"; st.rerun()
     with c2:
         lbl = C["back_btn"] if (st.session_state.help or st.session_state.view_titans) else C["help_btn"]
-        if st.button(lbl, key="help_toggle", kind="secondary"):
+        if st.button(lbl, key="help_toggle"):
             st.session_state.help = not st.session_state.help
             st.session_state.view_titans = False
     with c3:
-        if st.button(C["titans_btn"], key="titans_toggle", kind="secondary"):
+        if st.button(C["titans_btn"], key="titans_toggle"):
             st.session_state.view_titans = not st.session_state.view_titans
             st.session_state.help = False
     with c4:
@@ -385,7 +378,7 @@ else:
 
     st.markdown("<br><br>", unsafe_allow_html=True)
     
-    # سنترة زر بدء التحليل بشكل فيت هندسي
+    # زر بدء التحليل في المنتصف تماماً
     _, mid, _ = st.columns([1.3, 1, 1.3])
     with mid:
         st.markdown('<div class="cta-col">', unsafe_allow_html=True)
