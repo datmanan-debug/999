@@ -30,13 +30,13 @@ loc = {
         "dir": "ltr",
         "align": "left",
         "roles": {
-            "supervisor1": "Supervisor",
-            "supervisor2": "Supervisor",
-            "leader": "Team Leader",
-            "researcher": "Researcher",
-            "designer": "Designer",
-            "programmer": "Programmer",
-            "ai_dev": "AI Engineer & Developer"
+            "supervisor1": "Supervisor: Dr. Wisam Haider",
+            "supervisor2": "Supervisor: M.Sc. Maha Abbas",
+            "leader": "Team Leader: Atmanan Karim",
+            "researcher": "Researcher: Fatima Abdul-Monem",
+            "designer": "Designer: Saja Mehdi",
+            "programmer": "Programmer: Maryam Muhammad",
+            "ai_dev": "AI Engineer & Developer: Hussein Jameel"
         }
     },
     "AR": {
@@ -53,13 +53,13 @@ loc = {
         "dir": "rtl",
         "align": "right",
         "roles": {
-            "supervisor1": "المشرف",
-            "supervisor2": "المشرفة",
-            "leader": "قائد الفريق (الليدر)",
-            "researcher": "الباحثة",
-            "designer": "المصممة",
-            "programmer": "المبرمجة",
-            "ai_dev": "مطور الذكاء الاصطناعي والبرمجيات"
+            "supervisor1": "المشرف: د. وسام حيدر",
+            "supervisor2": "المشرفة: م.م. مها عباس",
+            "leader": "قائد الفريق (الليدر): اطمئنان كريم",
+            "researcher": "الباحثة: فاطمة عبدالمنعم",
+            "designer": "المصممة: سجى مهدي",
+            "programmer": "المبرمجة: مريم محمد",
+            "ai_dev": "مطور الذكاء الاصطناعي والبرمجيات: حسين جميل"
         }
     }
 }
@@ -79,8 +79,8 @@ st.markdown(f"""
   --muted: #526375;
   --navy: #0F2537;
   --teal: #1D5659;
-  --indigo: #2A4365; /* النيلي الملكي بديل الحنطي */
-  --pink: #E68EA5;   /* اللمسة الوردية للتوعية بسرطان الثدي */
+  --indigo: #2A4365; 
+  --pink: #E68EA5;   
   --pink-light: #FDF2F5;
   --card: #FFFFFF;
   --border: #DDE4E9;
@@ -106,7 +106,7 @@ html, body, .stApp {{
   background: linear-gradient(135deg, var(--navy), var(--indigo));
   color: #fff; font-family: 'Lora', serif; font-weight: 600; font-size: 18px;
   display: flex; align-items: center; justify-content: center;
-  border-bottom: 3px solid var(--pink); /* لمسة وردية */
+  border-bottom: 3px solid var(--pink);
 }}
 .mark-label {{
   font-family: 'IBM Plex Mono', monospace; font-size: 13px; letter-spacing: 1px;
@@ -152,7 +152,7 @@ div[data-testid="column"] .stButton>button:hover {{
   line-height: 1.7;
   max-width: 720px;
   margin: 20px auto 0 auto;
-  text-align: center; /* تلبية لطلب وضعها في المنتصف */
+  text-align: center; /* تضمن توسيط العبارة تماماً */
 }}
 
 .badge {{
@@ -195,10 +195,12 @@ div.stButton>button.cta-btn:hover {{
   border-radius: 12px;
   margin-bottom: 16px;
   border: 1px solid var(--border);
-  border-top: 4px solid var(--indigo);
+  border-top: 4px solid var(--indigo); /* الافتراضي نيلي لجميع البطاقات وحسين جميل */
   box-shadow: 0 3px 12px rgba(0,0,0,0.03);
 }}
-.card.pink-accent {{ border-top-color: var(--pink); }}
+.card.pink-accent {{ 
+  border-top-color: var(--pink) !important; /* خاص بالمشرفين فقط باللون الوردي */
+}}
 .card h3 {{
   font-weight: 600;
   font-size: 17px;
@@ -210,13 +212,6 @@ div.stButton>button.cta-btn:hover {{
   font-size: 14.5px;
   line-height: 1.6;
   margin: 0;
-}}
-.card-meta {{
-  font-family: 'IBM Plex Mono', monospace;
-  font-size: 12px;
-  color: var(--pink);
-  margin-top: 5px;
-  display: block;
 }}
 
 footer, header {{ visibility: hidden; }}
@@ -283,19 +278,19 @@ if st.session_state.view_titans:
     with c_t1:
         st.markdown(f"""
         <div class="card pink-accent">
-            <h3>🩺 {current_loc['roles']['supervisor1']}: د. وسام حيدر</h3>
+            <h3>🩺 {current_loc['roles']['supervisor1']}</h3>
             <p>Supervision, clinical validation guidance and medical track evaluation.</p>
         </div>
         <div class="card">
-            <h3>👑 {current_loc['roles']['leader']}: اطمئنان كريم</h3>
+            <h3>👑 {current_loc['roles']['leader']}</h3>
             <p>Project coordination, lifecycle management and sprint execution lead.</p>
         </div>
         <div class="card">
-            <h3>🎨 {current_loc['roles']['designer']}: سجى مهدي</h3>
+            <h3>🎨 {current_loc['roles']['designer']}</h3>
             <p>UI/UX Architect, aesthetics controller, design tokens and assets designer.</p>
         </div>
-        <div class="card pink-accent">
-            <h3>✨ {current_loc['roles']['ai_dev']}: حسين جميل</h3>
+        <div class="card">
+            <h3>✨ {current_loc['roles']['ai_dev']}</h3>
             <p>AI Infrastructure, model training architecture, core engine deployment and system refinement.</p>
         </div>
         """, unsafe_allow_html=True)
@@ -303,15 +298,15 @@ if st.session_state.view_titans:
     with c_t2:
         st.markdown(f"""
         <div class="card pink-accent">
-            <h3>🔬 {current_loc['roles']['supervisor2']}: م.م. مها عباس</h3>
+            <h3>🔬 {current_loc['roles']['supervisor2']}</h3>
             <p>Co-Supervision, engineering review, and technical research verification.</p>
         </div>
         <div class="card">
-            <h3>📊 {current_loc['roles']['researcher']}: فاطمة عبدالمنعم</h3>
+            <h3>📊 {current_loc['roles']['researcher']}</h3>
             <p>Data science research, preprocessing pipelines, CBIS-DDSM dataset analysis.</p>
         </div>
         <div class="card">
-            <h3>💻 {current_loc['roles']['programmer']}: مريم محمد</h3>
+            <h3>💻 {current_loc['roles']['programmer']}</h3>
             <p>Backend systems software development, integration scripts and logic testing.</p>
         </div>
         """, unsafe_allow_html=True)
@@ -368,5 +363,5 @@ else:
     # Centered CTA Trigger using the custom styling 'cta-btn'
     _, mid, _ = st.columns([4, 3, 4])
     with mid:
-        if st.button(current_loc["begin_btn"], key="begin_analysis_main"):
+        if st.button(current_loc["begin_btn"], key="begin_analysis_main", type="primary"):
             st.toast("Redirecting to Analysis Engine...", icon="🚀")
