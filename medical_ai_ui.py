@@ -76,14 +76,14 @@ st.markdown(f"""
 :root {{
   --bg: #F4F7F9;
   --ink: #111E2C;
-  --muted: #526375;
+  --muted: #A0AEC0;
   --navy: #0F2537;
   --teal: #1D5659;
   --indigo: #2A4365; 
   --pink: #E68EA5;   
   --pink-light: #FDF2F5;
-  --card: #FFFFFF;
-  --border: #DDE4E9;
+  --card: #0F2537; /* تم إرجاع المربعات للون النيلي الداكن */
+  --border: #2D3748;
 }}
 
 html, body, .stApp {{
@@ -113,14 +113,14 @@ html, body, .stApp {{
 }}
 .mark-label {{
   font-family: 'IBM Plex Mono', monospace; font-size: 13px; letter-spacing: 1px;
-  color: var(--muted); text-transform: uppercase;
+  color: #526375; text-transform: uppercase;
 }}
 
 /* ---- Custom Top Buttons ---- */
 div[data-testid="column"] .stButton>button {{
-  background: var(--card) !important;
+  background: #FFFFFF !important;
   color: var(--navy) !important;
-  border: 1px solid var(--border) !important;
+  border: 1px solid #DDE4E9 !important;
   border-radius: 10px !important;
   font-size: 14px !important;
   padding: 6px 14px !important;
@@ -151,7 +151,7 @@ div[data-testid="column"] .stButton>button:hover {{
 .title .accent {{ color: var(--indigo); border-bottom: 2px dashed var(--pink); }}
 
 .sub {{
-  color: var(--muted);
+  color: #526375;
   font-size: 16.5px;
   line-height: 1.7;
   max-width: 720px;
@@ -173,53 +173,44 @@ div[data-testid="column"] .stButton>button:hover {{
   font-size: 13px;
 }}
 
-/* ---- Centered Container for Main CTA Button ---- */
-.cta-container {{
+/* ---- Centered Main CTA Button Styling ---- */
+div[data-testid="column"] div.stButton {{
   display: flex !important;
   justify-content: center !important;
   align-items: center !important;
   width: 100% !important;
-  margin-top: 30px !important;
-  margin-bottom: 10px !important;
-  text-align: center !important;
 }}
 
-/* إجبار الزر وعناصره الفرعية على التوسط التام */
-.cta-container div, .cta-container .stButton {{
-  display: flex !important;
-  justify-content: center !important;
-  margin: 0 auto !important;
-}}
-
-.cta-container button {{
+div[data-testid="column"] div.stButton>button {{
   background: var(--indigo) !important;
-  color: #fff !important;
+  color: #ffffff !important;
   border: none !important;
   border-radius: 10px !important;
   font-weight: 600 !important;
   font-size: 18px !important;
-  padding: 12px 50px !important;
+  padding: 12px 60px !important;
   box-shadow: 0 6px 20px rgba(42, 67, 101, 0.25) !important;
   transition: all 0.2s ease !important;
-  margin: 0 auto !important;
+  display: block !important;
+  margin: 30px auto 10px auto !important;
 }}
 
-.cta-container button:hover {{
+div[data-testid="column"] div.stButton>button:hover {{
   background: var(--navy) !important;
   border-top: 2px solid var(--pink) !important;
   box-shadow: 0 8px 25px rgba(42, 67, 101, 0.35) !important;
-  color: #fff !important;
+  color: #ffffff !important;
 }}
 
-/* ---- Cards Layout ---- */
+/* ---- Cards Layout (إعدادات النيلي والكتابة البيضاء) ---- */
 .card {{
-  background: var(--card);
+  background: var(--card) !important;
   padding: 20px 22px;
   border-radius: 12px;
   margin-bottom: 16px;
   border: 1px solid var(--border);
-  border-top: 4px solid var(--indigo); 
-  box-shadow: 0 3px 12px rgba(0,0,0,0.03);
+  border-top: 4px solid var(--indigo) !important; 
+  box-shadow: 0 4px 15px rgba(0,0,0,0.15);
 }}
 .card.pink-accent {{ 
   border-top-color: var(--pink) !important; 
@@ -227,11 +218,11 @@ div[data-testid="column"] .stButton>button:hover {{
 .card h3 {{
   font-weight: 600;
   font-size: 17px;
-  color: var(--navy);
+  color: #FFFFFF !important; /* عنوان أبيض داخل الكارت النيلي */
   margin: 0 0 10px 0;
 }}
 .card p {{
-  color: var(--muted);
+  color: var(--muted) !important; /* نصوص فرعية واضحة */
   font-size: 14.5px;
   line-height: 1.6;
 }}
@@ -287,9 +278,8 @@ st.markdown("<hr style='margin:10px 0; border:0; border-top:1px solid var(--bord
 # ----------------------------------------------------------------------------
 if st.session_state.view_titans:
     st.markdown(f"""
-    <div class="help-header">
-        <div class="help-eyebrow">TITANS ENGINE</div>
-        <div class="help-title">{current_loc['titans_title']}</div>
+    <div class="help-header" style="text-align: center; margin-bottom: 25px;">
+        <div class="help-title" style="font-size: 28px; font-weight: 700; color: var(--navy);">{current_loc['titans_title']}</div>
     </div>
     """, unsafe_allow_html=True)
     
@@ -336,9 +326,8 @@ if st.session_state.view_titans:
 # ----------------------------------------------------------------------------
 elif st.session_state.help:
     st.markdown(f"""
-    <div class="help-header">
-        <div class="help-eyebrow">{current_loc['ref_title']}</div>
-        <div class="help-title">{current_loc['about_title']}</div>
+    <div class="help-header" style="text-align: center; margin-bottom: 25px;">
+        <div class="help-title" style="font-size: 28px; font-weight: 700; color: var(--navy);">{current_loc['about_title']}</div>
     </div>
     """, unsafe_allow_html=True)
 
@@ -380,8 +369,8 @@ else:
     </div>
     """, unsafe_allow_html=True)
 
-    # استخدام الحاوية الجديدة المخصصة لفرض التوسط المطلق للزر
-    st.markdown('<div class="cta-container">', unsafe_allow_html=True)
-    if st.button(current_loc["begin_btn"], key="begin_analysis_main"):
-        st.toast("Redirecting to Analysis Engine...", icon="🚀")
-    st.markdown('</div>', unsafe_allow_html=True)
+    # استخدام آلية توزيع الأعمدة الصارمة لضمان التمركز الأفقي المطلق للزر
+    btn_cols = st.columns([1, 1, 1])
+    with btn_cols[1]:
+        if st.button(current_loc["begin_btn"], key="begin_analysis_main"):
+            st.toast("Redirecting to Analysis Engine...", icon="🚀")
