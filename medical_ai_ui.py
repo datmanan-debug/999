@@ -105,30 +105,24 @@ is_ar = st.session_state.lang == "AR"
 font_main = "'Cairo', sans-serif" if is_ar else "'Inter', sans-serif"
 font_display = "'Cairo', sans-serif" if is_ar else "'Lora', serif"
 
-# ─── CSS ────────────────────────────────────────────────────────────────────
+# ─── CSS FIXED & OPTIMIZED ──────────────────────────────────────────────────
 st.markdown(f"""
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Lora:wght@500;700&family=Inter:wght@300;400;500;600;700&family=IBM+Plex+Mono:wght@400;500&family=Cairo:wght@400;600;700;900&display=swap');
 
 /* ── TOKENS ── */
 :root {{
-  --bg:          #4A5568;   
-  --bg-deep:     #2D3748;   
-  --indigo-navy: #1A365D;   
-  --indigo-dark: #0A192F;
+  --bg:          #1e293b;   /* خلفية زرقاء داكنة مريحة ومتناسقة مع صورتك */
+  --bg-deep:     #0f172a;   
+  --indigo-navy: #1E3A8A;   /* لون الخط الداكن للأزرار العلوية */
   --bg-card:     #FFFFFF;   
-  --border:      rgba(255,255,255,0.12);
-  --steel:       #CBD5E0;   
-  --white:       #F7FAFC;   
-  --pink:        #E89BB0;   
-  --pink-soft:   #F3C6D4;
-  --pink-glow:   rgba(232,155,176,0.18);
-  --pink-border: rgba(232,155,176,0.40);
-  --r-sm: 8px; --r-md: 14px;
-  --t: 0.2s ease-in-out;
+  --border:      rgba(255,255,255,0.08);
+  --steel:       #94A3B8;   
+  --white:       #F8FAFC;   
+  --pink:        #E89BB0;   /* اللون الوردي لزر بدء التحليل */
+  --pink-soft:   #F43F5E;
 }}
 
-*, *::before, *::after {{ box-sizing: border-box; }}
 footer, header {{ visibility: hidden !important; }}
 
 /* ── BASE ── */
@@ -141,122 +135,111 @@ html, body, .stApp {{
 
 .block-container {{
   max-width: 1160px !important;
-  padding: 1.2rem 2rem 4rem !important;
-}}
-
-/* خلفية رصاصية تفاعلية */
-.bg-canvas {{
-  position: fixed; inset: 0; overflow: hidden; pointer-events: none; z-index: 0;
-}}
-.orb {{ position: absolute; border-radius: 50%; filter: blur(90px); opacity: 0.2; }}
-.orb-1 {{ width: 500px; height: 500px; background: radial-gradient(circle, #718096, transparent 70%); top: -50px; left: -50px; }}
-.orb-2 {{ width: 400px; height: 400px; background: radial-gradient(circle, var(--pink), transparent 70%); bottom: 10%; right: -50px; }}
-.grid-lines {{
-  position: fixed; inset: 0;
-  background-image: linear-gradient(rgba(255,255,255,0.02) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.02) 1px, transparent 1px);
-  background-size: 60px 60px; pointer-events: none; z-index: 0;
+  padding: 1.5rem 2rem 4rem !important;
 }}
 
 /* ══════════════════════════════════════
-   أزرار التحكم العلوية الإلزامية (خلفية بيضاء خط نيلي ثابت)
+   إصلاح أزرار التحكم العلوية جذرياً (إجبار لون النص الداكن)
 ══════════════════════════════════════ */
 .topbar {{
   display: flex; align-items: center; gap: 12px; padding-bottom: 14px; position: relative; z-index: 10;
 }}
 .brand-mark {{
-  width: 42px; height: 42px; border-radius: 11px; background: var(--bg-deep); border: 1.5px solid var(--pink-border);
+  width: 42px; height: 42px; border-radius: 11px; background: var(--bg-deep); border: 1.5px solid rgba(232,155,176,0.3);
   display: flex; align-items: center; justify-content: center; font-family: 'Lora', serif; font-weight: 700; font-size: 15px; color: var(--white);
 }}
-.brand-label {{ font-family: 'IBM Plex Mono', monospace; font-size: 11px; letter-spacing: 2.5px; color: #E2E8F0; }}
+.brand-label {{ font-family: 'IBM Plex Mono', monospace; font-size: 11px; letter-spacing: 2.5px; color: #94A3B8; }}
 
-/* استهداف الأزرار العلوية بالـ CSS وإجبار الألوان */
-div[data-testid="column"] button {{
+/* استهداف مباشر لزر الـ Streamlit لإجبار اللون الأبيض للخلفية والنيلي للخط والبارامترات */
+div[data-testid="stButton"] button {{
   background-color: #FFFFFF !important;
-  color: var(--indigo-navy) !important;
   border: 1px solid #FFFFFF !important;
-  border-radius: var(--r-sm) !important;
-  font-size: 14px !important;
-  font-weight: 700 !important;
-  padding: 8px 18px !important;
-  font-family: {font_main} !important;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.15) !important;
+  border-radius: 8px !important;
+  padding: 8px 22px !important;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.2) !important;
+  transition: all 0.2s ease-in-out !important;
 }}
 
-div[data-testid="column"] button:hover,
-div[data-testid="column"] button:focus,
-div[data-testid="column"] button:active {{
-  background-color: #E2E8F0 !important;
-  color: var(--indigo-dark) !important;
-  border-color: #E2E8F0 !important;
-  box-shadow: 0 6px 15px rgba(0,0,0,0.2) !important;
+/* إجبار النص وداخل الزر (المستطيل الأبيض) على أخذ اللون النيلي */
+div[data-testid="stButton"] button p, 
+div[data-testid="stButton"] button span,
+div[data-testid="stButton"] button div {{
+  color: var(--indigo-navy) !important;
+  font-family: {font_main} !important;
+  font-weight: 700 !important;
+  font-size: 14px !important;
+}}
+
+/* عند تمرير الماوس فوق الأزرار العلوية العادية */
+div[data-testid="stButton"] button:hover {{
+  background-color: #F1F5F9 !important;
+  border-color: #F1F5F9 !important;
+  box-shadow: 0 6px 16px rgba(0,0,0,0.3) !important;
+}}
+div[data-testid="stButton"] button:hover p {{
+  color: #0F172A !important;
 }}
 
 .hr-line {{
-  height: 1px; background: linear-gradient(90deg, transparent, var(--border), var(--pink-border), var(--border), transparent); margin: 4px 0 20px;
+  height: 1px; background: linear-gradient(90deg, transparent, var(--border), rgba(232,155,176,0.3), var(--border), transparent); margin: 4px 0 25px;
 }}
 
 /* ══════════════════════════════════════
-   زر بدء التحليل (خلفية وردية خط أبيض ثابت)
+   إصلاح وإبراز زر بدء التحليل (خلفية وردية ونص أبيض فاقع ثابت)
 ══════════════════════════════════════ */
-.cta-col button {{
+.cta-container div[data-testid="stButton"] button {{
   background-color: var(--pink) !important;
-  color: #FFFFFF !important;
   border: 2px solid var(--pink) !important;
   border-radius: 50px !important;
-  font-size: 16px !important;
-  font-weight: 700 !important;
-  padding: 14px 42px !important;
-  font-family: {font_main} !important;
-  box-shadow: 0 6px 22px rgba(232,155,176,0.4) !important;
-  display: block !important;
+  padding: 14px 50px !important;
   width: 100% !important;
+  box-shadow: 0 8px 24px rgba(232,155,176,0.35) !important;
 }}
 
-.cta-col button:hover, .cta-col button:focus, .cta-col button:active {{
+/* إجبار نص زر بدء التحليل على اللون الأبيض */
+.cta-container div[data-testid="stButton"] button p,
+.cta-container div[data-testid="stButton"] button span {{
+  color: #FFFFFF !important;
+  font-size: 17px !important;
+  font-weight: 700 !important;
+}}
+
+.cta-container div[data-testid="stButton"] button:hover {{
   background-color: var(--pink-soft) !important;
-  color: var(--indigo-navy) !important;
   border-color: var(--pink-soft) !important;
-  box-shadow: 0 8px 28px rgba(232,155,176,0.6) !important;
+  box-shadow: 0 10px 28px rgba(244,63,94,0.5) !important;
   transform: translateY(-2px);
 }}
 
-/* ══════════════════════════════════════
-   HERO & STATS
-══════════════════════════════════════ */
-.hero {{ text-align: center; padding: 30px 20px 10px; position: relative; z-index: 5; }}
-.hero-title {{ font-family: {font_display}; font-size: clamp(26px, 4vw, 44px); font-weight: 700; color: var(--white); line-height: 1.25; }}
-.hero-accent {{ display: block; background: linear-gradient(120deg, var(--pink) 0%, var(--pink-soft) 55%, #fff 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }}
-.hero-sub {{ color: #E2E8F0; font-size: 16px; line-height: 1.8; max-width: 650px; margin: 18px auto 0; }}
+/* ── HERO & STATS ── */
+.hero {{ text-align: center; padding: 20px 10px 10px; position: relative; z-index: 5; }}
+.hero-title {{ font-family: {font_display}; font-size: clamp(28px, 4vw, 44px); font-weight: 700; color: var(--white); line-height: 1.25; }}
+.hero-accent {{ display: block; background: linear-gradient(120deg, var(--pink) 0%, #F43F5E 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }}
+.hero-sub {{ color: #94A3B8; font-size: 16px; line-height: 1.8; max-width: 700px; margin: 18px auto 0; }}
 .badge-wrap {{ display:flex; justify-content:center; margin-top:22px; }}
-.badge {{ display:inline-flex; align-items:center; gap:10px; padding: 10px 22px; border: 1px solid var(--border); background: var(--bg-deep); border-radius: 40px; font-size: 13px; }}
+.badge {{ display:inline-flex; align-items:center; gap:10px; padding: 10px 22px; border: 1px solid var(--border); background: var(--bg-deep); border-radius: 40px; font-size: 13px; color: #E2E8F0; }}
 
-.stats-row {{ display: flex; max-width: 480px; margin: 35px auto 0; border: 1px solid var(--border); border-radius: 14px; overflow: hidden; position: relative; z-index: 5; }}
+.stats-row {{ display: flex; max-width: 480px; margin: 35px auto 0; border: 1px solid var(--border); border-radius: 14px; overflow: hidden; }}
 .stat-item {{ flex: 1; padding: 16px 14px; text-align: center; background: var(--bg-deep); border-right: 1px solid var(--border); }}
 .stat-item:last-child {{ border-right: none; }}
 .stat-val {{ font-size: 16px; font-weight: 700; color: var(--white); }}
 .stat-lbl {{ font-size: 11px; color: var(--steel); margin-top: 4px; }}
 
-/* لوحة الفريق */
-.sec-head {{ text-align: center; margin: 30px 0 25px; position: relative; z-index: 5; }}
+/* الكروت */
+.sec-head {{ text-align: center; margin: 30px 0 25px; }}
 .sec-title {{ font-family: {font_display}; font-size: 28px; font-weight: 700; color: var(--white); }}
-.sec-sub {{ font-size: 14px; color: #E2E8F0; }}
+.sec-sub {{ font-size: 14px; color: #94A3B8; }}
 
 .mcard {{
-  background: var(--bg-card) !important; border: 1px solid #E2E8F0; border-top: 4px solid var(--indigo-light) !important;
-  border-radius: 14px; padding: 24px 22px; margin-bottom: 16px; position: relative; z-index: 5; box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+  background: var(--bg-card) !important; border-top: 4px solid var(--indigo-navy) !important;
+  border-radius: 14px; padding: 24px 22px; margin-bottom: 16px; box-shadow: 0 4px 15px rgba(0,0,0,0.1);
 }}
 .mcard.pink {{ border-top-color: var(--pink) !important; }}
 .mcard-icon {{ font-size: 24px; display: block; margin-bottom: 10px; }}
-.mcard-role {{ font-family: 'IBM Plex Mono', monospace; font-size: 11px; font-weight:600; color: var(--pink); margin-bottom: 6px; }}
+.mcard-role {{ font-family: 'IBM Plex Mono', monospace; font-size: 11px; font-weight:600; color: #F43F5E; margin-bottom: 6px; }}
 .mcard-name {{ font-size: 17px; font-weight: 700; color: var(--indigo-navy) !important; margin-bottom: 8px; }}
-.mcard-body {{ font-size: 14px; line-height: 1.6; color: #4A5568 !important; }}
+.mcard-body {{ font-size: 14px; line-height: 1.6; color: #334155 !important; }}
 </style>
-
-<div class="bg-canvas">
-  <div class="grid-lines"></div>
-  <div class="orb orb-1"></div>
-  <div class="orb orb-2"></div>
-</div>
 """, unsafe_allow_html=True)
 
 # ─── TOPBAR ─────────────────────────────────────────────────────────────────
@@ -360,7 +343,6 @@ else:
     eyebrow = "Clinical AI · Mammography" if not is_ar else "ذكاء اصطناعي سريري · الماموجرام"
     st.markdown(f"""
     <div class="hero">
-      <div class="hero-eyebrow"><span class="dot"></span>{eyebrow}</div>
       <div class="hero-title">
         {C['title']}
         <span class="hero-accent">{C['title_accent']}</span>
@@ -378,10 +360,10 @@ else:
 
     st.markdown("<br><br>", unsafe_allow_html=True)
     
-    # زر بدء التحليل في المنتصف تماماً
-    _, mid, _ = st.columns([1.3, 1, 1.3])
+    # وضع زر بدء التحليل داخل مغلف الـ CSS الجديد (cta-container) لضمان الألوان الوردية والخط الأبيض الثابت
+    _, mid, _ = st.columns([1.2, 1, 1.2])
     with mid:
-        st.markdown('<div class="cta-col">', unsafe_allow_html=True)
+        st.markdown('<div class="cta-container">', unsafe_allow_html=True)
         if st.button(C["begin_btn"], key="begin_analysis_main", use_container_width=True):
             st.toast("Redirecting to Analysis Engine...", icon="🚀")
         st.markdown('</div>', unsafe_allow_html=True)
