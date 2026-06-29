@@ -67,7 +67,7 @@ loc = {
         "back_btn": "العودة →",
         "titans_btn": "⚙ الفريق",
         "titans_title": "فريق العمل ومطوري المشروع",
-        "about_title": "حول هذا النظام",
+        "about_title": "حول this النظام",
         "dir": "rtl",
         "roles": {
             "supervisor1": "ا.م.د. وسام حيدر مهدي",
@@ -211,12 +211,12 @@ div[data-testid="stButton"] button:hover p {{
 }}
 
 /* ── HERO & STATS ── */
-.hero {{ text-align: center; padding: 20px 10px 10px; position: relative; z-index: 5; }}
-.hero-title {{ font-family: {font_display}; font-size: clamp(28px, 4vw, 44px); font-weight: 700; color: var(--white); line-height: 1.25; }}
-.hero-accent {{ display: block; background: linear-gradient(120deg, var(--pink) 0%, #F43F5E 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }}
-.hero-sub {{ color: #94A3B8; font-size: 16px; line-height: 1.8; max-width: 700px; margin: 18px auto 0; text-align: center !important; }}
+.hero {{ text-align: center !important; padding: 20px 10px 10px; position: relative; z-index: 5; margin: 0 auto; }}
+.hero-title {{ font-family: {font_display}; font-size: clamp(28px, 4vw, 44px); font-weight: 700; color: var(--white); line-height: 1.25; text-align: center; }}
+.hero-accent {{ display: block; background: linear-gradient(120deg, var(--pink) 0%, #F43F5E 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; text-align: center; }}
+.hero-sub {{ color: #94A3B8; font-size: 16px; line-height: 1.8; max-width: 750px; margin: 18px auto 0 !important; text-align: center !important; display: block; }}
 .badge-wrap {{ display:flex; justify-content:center; margin-top:22px; }}
-.badge {{ display:inline-flex; align-items:center; gap:10px; padding: 10px 22px; border: 1px solid var(--border); background: var(--bg-deep); border-radius: 40px; font-size: 13px; color: #E2E8F0; }}
+.badge {{ display:inline-flex; align-items:center; gap:10px; padding: 10px 22px; border: 1px solid var(--border); background: var(--bg-deep); border-radius: 40px; font-size: 13px; color: #E2E8F0; text-align: center; }}
 
 .stats-row {{ display: flex; max-width: 480px; margin: 35px auto 0; border: 1px solid var(--border); border-radius: 14px; overflow: hidden; }}
 .stat-item {{ flex: 1; padding: 16px 14px; text-align: center; background: var(--bg-deep); border-right: 1px solid var(--border); }}
@@ -363,14 +363,13 @@ elif st.session_state.help:
 
 # ─── VIEW 3: HERO ────────────────────────────────────────────────────────────
 else:
-    eyebrow = "Clinical AI · Mammography" if not is_ar else "ذكاء اصطناعي سريري · الماموجرام"
     st.markdown(f"""
     <div class="hero">
       <div class="hero-title">
         {C['title']}
         <span class="hero-accent">{C['title_accent']}</span>
       </div>
-      <p class="hero-sub">{C['sub']}</p>
+      <center><p class="hero-sub">{C['sub']}</p></center>
       <div class="badge-wrap"><div class="badge">🎀 {C['badge']}</div></div>
     </div>
     """, unsafe_allow_html=True)
