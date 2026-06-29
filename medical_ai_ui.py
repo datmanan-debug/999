@@ -30,9 +30,9 @@ loc = {
         "dir": "ltr",
         "align": "left",
         "roles": {
-            "supervisor1": "Supervisor: Dr. Wisam Haider",
-            "supervisor2": "Supervisor: M.Sc. Maha Abbas",
-            "leader": "Team Leader: Atmanan Karim",
+            "supervisor1": "Supervisor: Asst.Prof. Dr. Wisam Hayder Mahdi",
+            "supervisor2": "Supervisor: Asst.Prof. Maha A. Hutaihitt",
+            "leader": "Team Leader: Atmanan Kareem",
             "researcher": "Researcher: Fatima Abdul-Monem",
             "designer": "Designer: Saja Mehdi",
             "programmer": "Programmer: Maryam Muhammad",
@@ -53,8 +53,8 @@ loc = {
         "dir": "rtl",
         "align": "right",
         "roles": {
-            "supervisor1": "المشرف: د. وسام حيدر",
-            "supervisor2": "المشرفة: م.م. مها عباس",
+            "supervisor1": "المشرف: ا.م.د. وسام حيدر مهدي",
+            "supervisor2": "المشرفة: ا.م. مها عباس حطيحط",
             "leader": "قائد الفريق (الليدر): اطمئنان كريم",
             "researcher": "الباحثة: فاطمة عبدالمنعم",
             "designer": "المصممة: سجى مهدي",
@@ -67,7 +67,7 @@ loc = {
 current_loc = loc[st.session_state.lang]
 
 # ----------------------------------------------------------------------------
-# CSS Customization with New Design Tokens (Navy + Indigo + Pink Touch)
+# CSS Customization with Design Tokens (Navy + Indigo + Pink Touch)
 # ----------------------------------------------------------------------------
 st.markdown(f"""
 <style>
@@ -147,7 +147,6 @@ div[data-testid="column"] .stButton>button:hover {{
 }}
 .title .accent {{ color: var(--indigo); border-bottom: 2px dashed var(--pink); }}
 
-/* إجبار النص على التوسط الإجباري لمنع الوراثة الجانبية للغات */
 .sub {{
   color: var(--muted);
   font-size: 16.5px;
@@ -171,10 +170,23 @@ div[data-testid="column"] .stButton>button:hover {{
   font-size: 13px;
 }}
 
-/* ---- Main CTA Button (Indigo) ---- */
-div.stButton>button.cta-btn {{
-  display: block;
-  margin: 30px auto 10px auto;
+/* ---- Centered Container for Main CTA Button ---- */
+.cta-container {{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  margin-top: 30px;
+  margin-bottom: 10px;
+}}
+
+/* تخصيص زر بدء التحليل ليتوسط في كل الحالات */
+div[data-testid="stVerticalBlock"] div.stButton {{
+  display: flex;
+  justify-content: center !important;
+}}
+
+div.stButton>button {{
   background: var(--indigo) !important;
   color: #fff !important;
   border: none !important;
@@ -184,11 +196,13 @@ div.stButton>button.cta-btn {{
   padding: 12px 50px !important;
   box-shadow: 0 6px 20px rgba(42, 67, 101, 0.25) !important;
   transition: all 0.2s ease;
+  margin: 0 auto !important;
 }}
-div.stButton>button.cta-btn:hover {{
+div.stButton>button:hover {{
   background: var(--navy) !important;
   border-top: 2px solid var(--pink) !important;
   box-shadow: 0 8px 25px rgba(42, 67, 101, 0.35) !important;
+  color: #fff !important;
 }}
 
 /* ---- Cards Layout ---- */
@@ -360,7 +374,8 @@ else:
     </div>
     """, unsafe_allow_html=True)
 
-    _, mid, _ = st.columns([4, 3, 4])
-    with mid:
-        if st.button(current_loc["begin_btn"], key="begin_analysis_main", type="primary"):
-            st.toast("Redirecting to Analysis Engine...", icon="🚀")
+    # حزمة مرنة مخصصة إضافية للتأكد التام من التوسط العرضي
+    st.markdown('<div class="cta-container">', unsafe_allow_html=True)
+    if st.button(current_loc["begin_btn"], key="begin_analysis_main"):
+        st.toast("Redirecting to Analysis Engine...", icon="🚀")
+    st.markdown('</div>', unsafe_allow_html=True)
