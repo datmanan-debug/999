@@ -72,7 +72,7 @@ loc = {
         "roles": {
             "supervisor1": "ا.م.د. وسام حيدر مهدي",
             "supervisor1_role": "المشرف",
-            "supervisor2": "ا.م. مها عباس حطيحط",
+            "supervisor2": "ا.م.  مها عباس حطيحط",
             "supervisor2_role": "المشرفة",
             "leader": "اطمئنان كريم",
             "leader_role": "قائد الفريق",
@@ -238,40 +238,66 @@ div[data-testid="stButton"] button:hover p {{
 </style>
 """, unsafe_allow_html=True)
 
-# ─── TOPBAR ─────────────────────────────────────────────────────────────────
-brand_label_text = "MAMMOGRAM AI" if not is_ar else "ذكاء الماموجرام"
+# ─── TOPBAR (تحديث منطق الأزرار الذكي) ───────────────────────────────────────────
+is_sub_page = st.session_state.help or st.session_state.view_titans
 
 if not is_ar:
-    c0, c1, c2, _, c4 = st.columns([4, 1.4, 1.4, 1, 1.5])
-    with c0:
+    # توزيع الأعمدة للإصدار الإنجليزي (إضافة عمود إضافي لزر العودة الثالث عند الحاجة)
+    cols_specs = [3.5, 1.3, 1.3, 1.3, 1] if is_sub_page else [4.5, 1.4, 1.4, 1.2]
+    cols = st.columns(cols_specs)
+    
+    with cols[0]:
         st.markdown(f'<div class="topbar"><div class="brand-mark">MA</div><span class="brand-label">{brand_label_text}</span></div>', unsafe_allow_html=True)
-    with c1:
+    with cols[1]:
         if st.button(C["titans_btn"], key="titans_toggle"):
-            st.session_state.view_titans = not st.session_state.view_titans
+            st.session_state.view_titans = True
             st.session_state.help = False
-    with c2:
-        lbl = C["back_btn"] if (st.session_state.help or st.session_state.view_titans) else C["help_btn"]
-        if st.button(lbl, key="help_toggle"):
-            st.session_state.help = not st.session_state.help
+    with cols[2]:
+        if st.button(C["help_btn"], key="help_toggle"):
+            st.session_state.help = True
             st.session_state.view_titans = False
-    with c4:
-        if st.button("العربية 🇸🇦", key="lang_toggle"):
-            st.session_state.lang = "AR"; st.rerun()
+            
+    if is_sub_page:
+        with cols[3]:
+            if st.button(C["back_btn"], key="back_home_btn"):
+                st.session_state.help = False
+                st.session_state.view_titans = False
+                st.rerun()
+        with cols[4]:
+            if st.button("العربية 🇸🇦", key="lang_toggle"):
+                st.session_state.lang = "AR"; st.rerun()
+    else:
+        with cols[3]:
+            if st.button("العربية 🇸🇦", key="lang_toggle"):
+                st.session_state.lang = "AR"; st.rerun()
 else:
-    c0, _, c2, c3, c4 = st.columns([1.5, 1, 1.4, 1.4, 4])
-    with c0:
+    # توزيع الأعمدة للإصدار العربي (إضافة عمود إضافي لزر العودة الثالث عند الحاجة)
+    cols_specs = [1, 1.3, 1.3, 1.3, 3.5] if is_sub_page else [1.2, 1.4, 1.4, 4.5]
+    cols = st.columns(cols_specs)
+    
+    with cols[0]:
         if st.button("English 🇬🇧", key="lang_toggle"):
             st.session_state.lang = "EN"; st.rerun()
-    with c2:
-        lbl = C["back_btn"] if (st.session_state.help or st.session_state.view_titans) else C["help_btn"]
-        if st.button(lbl, key="help_toggle"):
-            st.session_state.help = not st.session_state.help
+            
+    if is_sub_page:
+        with cols[1]:
+            if st.button(C["back_btn"], key="back_home_btn"):
+                st.session_state.help = False
+                st.session_state.view_titans = False
+                st.rerun()
+        idx_help, idx_team, idx_brand = 2, 3, 4
+    else:
+        idx_help, idx_team, idx_brand = 1, 2, 3
+        
+    with cols[idx_help]:
+        if st.button(C["help_btn"], key="help_toggle"):
+            st.session_state.help = True
             st.session_state.view_titans = False
-    with c3:
+    with cols[idx_team]:
         if st.button(C["titans_btn"], key="titans_toggle"):
-            st.session_state.view_titans = not st.session_state.view_titans
+            st.session_state.view_titans = True
             st.session_state.help = False
-    with c4:
+    with cols[idx_brand]:
         st.markdown(f'<div class="topbar" style="justify-content:flex-end"><span class="brand-label">{brand_label_text}</span><div class="brand-mark">MA</div></div>', unsafe_allow_html=True)
 
 st.markdown('<div class="hr-line"></div>', unsafe_allow_html=True)
