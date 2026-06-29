@@ -131,7 +131,7 @@ div[data-testid="column"] .stButton>button:hover {{
 /* ---- Hero Section ---- */
 .hero {{
   position: relative;
-  text-align: center;
+  text-align: center !important;
   padding: 50px 16px 20px 16px;
   overflow: hidden;
 }}
@@ -143,16 +143,19 @@ div[data-testid="column"] .stButton>button:hover {{
   line-height: 1.3;
   max-width: 850px;
   margin: 0 auto;
+  text-align: center !important;
 }}
 .title .accent {{ color: var(--indigo); border-bottom: 2px dashed var(--pink); }}
 
+/* إجبار النص على التوسط الإجباري لمنع الوراثة الجانبية للغات */
 .sub {{
   color: var(--muted);
   font-size: 16.5px;
   line-height: 1.7;
   max-width: 720px;
-  margin: 20px auto 0 auto;
-  text-align: center; /* تضمن توسيط العبارة تماماً */
+  margin: 20px auto 0 auto !important;
+  text-align: center !important; 
+  display: block;
 }}
 
 .badge {{
@@ -195,11 +198,11 @@ div.stButton>button.cta-btn:hover {{
   border-radius: 12px;
   margin-bottom: 16px;
   border: 1px solid var(--border);
-  border-top: 4px solid var(--indigo); /* الافتراضي نيلي لجميع البطاقات وحسين جميل */
+  border-top: 4px solid var(--indigo); 
   box-shadow: 0 3px 12px rgba(0,0,0,0.03);
 }}
 .card.pink-accent {{ 
-  border-top-color: var(--pink) !important; /* خاص بالمشرفين فقط باللون الوردي */
+  border-top-color: var(--pink) !important; 
 }}
 .card h3 {{
   font-weight: 600;
@@ -211,7 +214,6 @@ div.stButton>button.cta-btn:hover {{
   color: var(--muted);
   font-size: 14.5px;
   line-height: 1.6;
-  margin: 0;
 }}
 
 footer, header {{ visibility: hidden; }}
@@ -223,7 +225,6 @@ footer, header {{ visibility: hidden; }}
 # ----------------------------------------------------------------------------
 top_cols = st.columns([4, 2, 2, 2, 2]) if st.session_state.lang == "EN" else st.columns([2, 2, 2, 2, 4])
 
-# Define order based on language direction
 if st.session_state.lang == "EN":
     with top_cols[0]:
         st.markdown('<div class="mark-row"><div class="mark">MX</div><span class="mark-label">MAMMOGRAM AI</span></div>', unsafe_allow_html=True)
@@ -272,7 +273,6 @@ if st.session_state.view_titans:
     </div>
     """, unsafe_allow_html=True)
     
-    # Grid System for Team Members
     c_t1, c_t2 = st.columns(2)
     
     with c_t1:
@@ -360,7 +360,6 @@ else:
     </div>
     """, unsafe_allow_html=True)
 
-    # Centered CTA Trigger using the custom styling 'cta-btn'
     _, mid, _ = st.columns([4, 3, 4])
     with mid:
         if st.button(current_loc["begin_btn"], key="begin_analysis_main", type="primary"):
