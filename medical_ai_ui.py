@@ -1,5 +1,3 @@
-
-محادثة مع Gemini
 import streamlit as st
 
 st.set_page_config(layout="wide", page_title="AI Mammogram", page_icon="◐")
