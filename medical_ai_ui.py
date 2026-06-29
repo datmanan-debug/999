@@ -1,4 +1,5 @@
 import streamlit as st
+import streamlit.components.v1 as components
 
 st.set_page_config(layout="wide", page_title="AI Mammogram", page_icon="◐")
 
@@ -11,6 +12,8 @@ if "lang" not in st.session_state:
     st.session_state.lang = "EN"  # Default language is English
 if "view_titans" not in st.session_state:
     st.session_state.view_titans = False
+if "trigger_analysis" not in st.session_state:
+    st.session_state.trigger_analysis = False
 
 # ----------------------------------------------------------------------------
 # Localization Dictionary (EN / AR)
@@ -78,11 +81,10 @@ st.markdown(f"""
   --ink: #111E2C;
   --muted: #A0AEC0;
   --navy: #0F2537;
-  --teal: #1D5659;
   --indigo: #2A4365; 
   --pink: #E68EA5;   
   --pink-light: #FDF2F5;
-  --card: #0F2537; /* تم إرجاع المربعات للون النيلي الداكن */
+  --card: #0F2537; 
   --border: #2D3748;
 }}
 
@@ -135,7 +137,7 @@ div[data-testid="column"] .stButton>button:hover {{
 .hero {{
   position: relative;
   text-align: center !important;
-  padding: 50px 16px 20px 16px;
+  padding: 50px 16px 10px 16px;
   overflow: hidden;
 }}
 .title {{
@@ -173,36 +175,7 @@ div[data-testid="column"] .stButton>button:hover {{
   font-size: 13px;
 }}
 
-/* ---- Centered Main CTA Button Styling ---- */
-div[data-testid="column"] div.stButton {{
-  display: flex !important;
-  justify-content: center !important;
-  align-items: center !important;
-  width: 100% !important;
-}}
-
-div[data-testid="column"] div.stButton>button {{
-  background: var(--indigo) !important;
-  color: #ffffff !important;
-  border: none !important;
-  border-radius: 10px !important;
-  font-weight: 600 !important;
-  font-size: 18px !important;
-  padding: 12px 60px !important;
-  box-shadow: 0 6px 20px rgba(42, 67, 101, 0.25) !important;
-  transition: all 0.2s ease !important;
-  display: block !important;
-  margin: 30px auto 10px auto !important;
-}}
-
-div[data-testid="column"] div.stButton>button:hover {{
-  background: var(--navy) !important;
-  border-top: 2px solid var(--pink) !important;
-  box-shadow: 0 8px 25px rgba(42, 67, 101, 0.35) !important;
-  color: #ffffff !important;
-}}
-
-/* ---- Cards Layout (إعدادات النيلي والكتابة البيضاء) ---- */
+/* ---- Cards Layout ---- */
 .card {{
   background: var(--card) !important;
   padding: 20px 22px;
@@ -218,11 +191,11 @@ div[data-testid="column"] div.stButton>button:hover {{
 .card h3 {{
   font-weight: 600;
   font-size: 17px;
-  color: #FFFFFF !important; /* عنوان أبيض داخل الكارت النيلي */
+  color: #FFFFFF !important;
   margin: 0 0 10px 0;
 }}
 .card p {{
-  color: var(--muted) !important; /* نصوص فرعية واضحة */
+  color: var(--muted) !important;
   font-size: 14.5px;
   line-height: 1.6;
 }}
@@ -284,7 +257,6 @@ if st.session_state.view_titans:
     """, unsafe_allow_html=True)
     
     c_t1, c_t2 = st.columns(2)
-    
     with c_t1:
         st.markdown(f"""
         <div class="card pink-accent">
@@ -304,7 +276,6 @@ if st.session_state.view_titans:
             <p>AI Infrastructure, model training architecture, core engine deployment and system refinement.</p>
         </div>
         """, unsafe_allow_html=True)
-        
     with c_t2:
         st.markdown(f"""
         <div class="card pink-accent">
@@ -369,8 +340,34 @@ else:
     </div>
     """, unsafe_allow_html=True)
 
-    # استخدام آلية توزيع الأعمدة الصارمة لضمان التمركز الأفقي المطلق للزر
-    btn_cols = st.columns([1, 1, 1])
-    with btn_cols[1]:
-        if st.button(current_loc["begin_btn"], key="begin_analysis_main"):
-            st.toast("Redirecting to Analysis Engine...", icon="🚀")
+    # توليد زر مستقل "فيت بالسنتر" بآلية HTML Component نقية ومعزولة تضمن التوسط الرياضي المطلق
+    html_btn = f"""
+    <div style="display: flex; justify-content: center; align-items: center; width: 100%; height: 80px; margin-top: 15px;">
+        <button onclick="parent.postMessage({{type: 'streamlit:setComponentValue', value: true}}, '*')" 
+            style="
+                background: #2A4365;
+                color: #ffffff;
+                border: none;
+                border-radius: 10px;
+                font-family: {'Cairo, sans-serif' if st.session_state.lang == 'AR' else 'Inter, sans-serif'};
+                font-weight: 600;
+                font-size: 18px;
+                padding: 12px 60px;
+                box-shadow: 0 6px 20px rgba(42, 67, 101, 0.25);
+                cursor: pointer;
+                transition: all 0.2s ease;
+            "
+            onmouseover="this.style.background='#0F2537'; this.style.borderTop='2px solid #E68EA5';"
+            onmouseout="this.style.background='#2A4365'; this.style.borderTop='none';"
+        >
+            {current_loc['begin_btn']}
+        </button>
+    </div>
+    """
+    
+    # عرض الـ Component في المنتصف بشكل مثالي وثابت وتخزين الاستجابة
+    response = components.html(html_btn, height=100, scrolling=False)
+    
+    if response:
+        st.session_state.trigger_analysis = True
+        st.toast("Redirecting to Analysis Engine...", icon="🚀")
