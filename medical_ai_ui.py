@@ -1,5 +1,4 @@
 import streamlit as st
-import streamlit.components.v1 as components
 
 st.set_page_config(layout="wide", page_title="AI Mammogram", page_icon="◐")
 
@@ -12,8 +11,6 @@ if "lang" not in st.session_state:
     st.session_state.lang = "EN"  # Default language is English
 if "view_titans" not in st.session_state:
     st.session_state.view_titans = False
-if "trigger_analysis" not in st.session_state:
-    st.session_state.trigger_analysis = False
 
 # ----------------------------------------------------------------------------
 # Localization Dictionary (EN / AR)
@@ -137,7 +134,7 @@ div[data-testid="column"] .stButton>button:hover {{
 .hero {{
   position: relative;
   text-align: center !important;
-  padding: 50px 16px 10px 16px;
+  padding: 50px 16px 20px 16px;
   overflow: hidden;
 }}
 .title {{
@@ -175,7 +172,28 @@ div[data-testid="column"] .stButton>button:hover {{
   font-size: 13px;
 }}
 
-/* ---- Cards Layout ---- */
+/* ---- تنسيق زر بدء التحليل الرئيسي ---- */
+/* نستهف هنا معرف فريد للزر لمنع تداخل التصميم مع الأزرار العلوية */
+div[data-testid="column"] div.stButton>button[key*="analysis"] {{
+  background: var(--indigo) !important;
+  color: #ffffff !important;
+  border: none !important;
+  border-radius: 10px !important;
+  font-weight: 600 !important;
+  font-size: 18px !important;
+  padding: 12px 0px !important; /* نترك العرض للأعمدة لتحدده بدقة */
+  box-shadow: 0 6px 20px rgba(42, 67, 101, 0.25) !important;
+  transition: all 0.2s ease !important;
+}}
+
+div[data-testid="column"] div.stButton>button[key*="analysis"]:hover {{
+  background: var(--navy) !important;
+  border-top: 2px solid var(--pink) !important;
+  box-shadow: 0 8px 25px rgba(42, 67, 101, 0.35) !important;
+  color: #ffffff !important;
+}}
+
+/* ---- Cards Layout (النيلي والكتابة البيضاء) ---- */
 .card {{
   background: var(--card) !important;
   padding: 20px 22px;
@@ -340,34 +358,9 @@ else:
     </div>
     """, unsafe_allow_html=True)
 
-    # توليد زر مستقل "فيت بالسنتر" بآلية HTML Component نقية ومعزولة تضمن التوسط الرياضي المطلق
-    html_btn = f"""
-    <div style="display: flex; justify-content: center; align-items: center; width: 100%; height: 80px; margin-top: 15px;">
-        <button onclick="parent.postMessage({{type: 'streamlit:setComponentValue', value: true}}, '*')" 
-            style="
-                background: #2A4365;
-                color: #ffffff;
-                border: none;
-                border-radius: 10px;
-                font-family: {'Cairo, sans-serif' if st.session_state.lang == 'AR' else 'Inter, sans-serif'};
-                font-weight: 600;
-                font-size: 18px;
-                padding: 12px 60px;
-                box-shadow: 0 6px 20px rgba(42, 67, 101, 0.25);
-                cursor: pointer;
-                transition: all 0.2s ease;
-            "
-            onmouseover="this.style.background='#0F2537'; this.style.borderTop='2px solid #E68EA5';"
-            onmouseout="this.style.background='#2A4365'; this.style.borderTop='none';"
-        >
-            {current_loc['begin_btn']}
-        </button>
-    </div>
-    """
-    
-    # عرض الـ Component في المنتصف بشكل مثالي وثابت وتخزين الاستجابة
-    response = components.html(html_btn, height=100, scrolling=False)
-    
-    if response:
-        st.session_state.trigger_analysis = True
-        st.toast("Redirecting to Analysis Engine...", icon="🚀")
+    # الطريقة المضمونة: تقسيم الشاشة إلى 5 أعمدة، ووضع الزر في العمود الأوسط ليصبح "فيت" بالمنتصف تماماً
+    st.markdown("<br>", unsafe_allow_html=True)
+    btn_cols = st.columns([1.5, 1, 1.2, 1, 1.5])
+    with btn_cols[2]:
+        if st.button(current_loc["begin_btn"], key="begin_analysis_main", use_container_width=True):
+            st.toast("Redirecting to Analysis Engine...", icon="🚀")
