@@ -45,7 +45,7 @@ loc = {
             "ai_dev_role": "AI Engineer & Developer"
         },
         "stats": [
-            ("CBIS-DDSM", "Dataset"),
+            ("CBIS-DDSM)", "Dataset"),
             ("Baqubah Hospital", "Dataset"),
         ],
         "help_sections": [
