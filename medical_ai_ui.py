@@ -74,7 +74,7 @@ loc = {
         "roles": {
             "supervisor1": "ا.م.د. وسام حيدر مهدي",
             "supervisor1_role": "المشرف",
-            "supervisor2": "ا.م. مها عباس حطيحط",
+            "supervisor2": "ا.م. مهاي عباس حطيحط",
             "supervisor2_role": "المشرفة",
             "leader": "اطمئنان كريم",
             "leader_role": "قائد الفريق",
@@ -117,22 +117,19 @@ st.markdown(f"""
 /* ── TOKENS ── */
 :root {{
   --bg:          #4A5568;   /* رصاصي متوسط — الخلفية الأساسية */
-  --bg-deep:     #2D3748;   /* رصاصي داكن للأسطح */
-  --bg-card:     #3A4255;   /* رصاصي للكروت */
-  --bg-card2:    #323B4E;   /* رصاصي أغمق قليلاً */
-  --border:      rgba(255,255,255,0.10);
-  --border-soft: rgba(255,255,255,0.06);
-  --steel:       #A0AEC0;   /* نص ثانوي */
-  --fog:         #CBD5E0;   /* نص متوسط */
-  --white:       #F7FAFC;   /* نص رئيسي */
+  --bg-deep:     #2D3748;   
+  --indigo-navy: #1A365D;   /* اللون النيلي الفخم للكتابة */
+  --indigo-light:#2A4365;   
+  --bg-card:     #FFFFFF;   /* كروت بيضاء تماماً بناءً على طلبك */
+  --border:      rgba(255,255,255,0.12);
+  --steel:       #CBD5E0;   /* نص رصاصي فاتح للبيانات الفرعية الهير */
+  --white:       #F7FAFC;   
   --pink:        #E89BB0;
   --pink-soft:   #F3C6D4;
   --pink-glow:   rgba(232,155,176,0.18);
   --pink-border: rgba(232,155,176,0.40);
   --r-sm: 8px; --r-md: 14px; --r-lg: 22px;
-  --t: 0.26s cubic-bezier(0.4,0,0.2,1);
-  --shadow: 0 4px 20px rgba(0,0,0,0.25);
-  --shadow-lg: 0 10px 40px rgba(0,0,0,0.35);
+  --t: 0.25s cubic-bezier(0.4,0,0.2,1);
 }}
 
 *, *::before, *::after {{ box-sizing: border-box; }}
@@ -153,7 +150,7 @@ html, body, .stApp {{
 }}
 
 /* ══════════════════════════════════════
-   ANIMATED BACKGROUND — دوائر متحركة
+   ANIMATED BACKGROUND — الدوائر والشبكة المتحركة
 ══════════════════════════════════════ */
 .bg-canvas {{
   position: fixed;
@@ -163,80 +160,66 @@ html, body, .stApp {{
   z-index: 0;
 }}
 
-/* دوائر ضبابية تتحرك ببطء */
 .orb {{
   position: absolute;
   border-radius: 50%;
-  filter: blur(80px);
-  opacity: 0.22;
+  filter: blur(90px);
+  opacity: 0.25;
 }}
 
 .orb-1 {{
-  width: 520px; height: 520px;
+  width: 550px; height: 550px;
   background: radial-gradient(circle, #718096, transparent 70%);
-  top: -120px; left: -100px;
-  animation: drift1 18s ease-in-out infinite alternate;
+  top: -100px; left: -100px;
+  animation: drift1 20s ease-in-out infinite alternate;
 }}
 
 .orb-2 {{
-  width: 380px; height: 380px;
+  width: 400px; height: 400px;
   background: radial-gradient(circle, var(--pink), transparent 70%);
-  bottom: 10%; right: -80px;
-  opacity: 0.14;
-  animation: drift2 22s ease-in-out infinite alternate;
+  bottom: 12%; right: -60px;
+  opacity: 0.16;
+  animation: drift2 24s ease-in-out infinite alternate;
 }}
 
 .orb-3 {{
-  width: 300px; height: 300px;
+  width: 320px; height: 320px;
   background: radial-gradient(circle, #A0AEC0, transparent 70%);
-  top: 45%; left: 40%;
-  opacity: 0.12;
-  animation: drift3 14s ease-in-out infinite alternate;
-}}
-
-/* نقاط شبكة خفيفة */
-.orb-4 {{
-  width: 200px; height: 200px;
-  background: radial-gradient(circle, var(--pink-soft), transparent 70%);
-  top: 20%; right: 25%;
-  opacity: 0.10;
-  animation: drift1 26s ease-in-out infinite alternate-reverse;
+  top: 40%; left: 35%;
+  opacity: 0.15;
+  animation: drift3 16s ease-in-out infinite alternate;
 }}
 
 @keyframes drift1 {{
   0%   {{ transform: translate(0px, 0px) scale(1); }}
-  50%  {{ transform: translate(60px, 40px) scale(1.08); }}
-  100% {{ transform: translate(-30px, 70px) scale(0.95); }}
+  50%  {{ transform: translate(70px, 50px) scale(1.05); }}
+  100% {{ transform: translate(-20px, 80px) scale(0.95); }}
 }}
 @keyframes drift2 {{
   0%   {{ transform: translate(0px, 0px) scale(1); }}
-  60%  {{ transform: translate(-50px, -60px) scale(1.12); }}
-  100% {{ transform: translate(40px, 30px) scale(0.9); }}
+  60%  {{ transform: translate(-40px, -50px) scale(1.1); }}
+  100% {{ transform: translate(30px, 40px) scale(0.9); }}
 }}
 @keyframes drift3 {{
   0%   {{ transform: translate(0px, 0px); }}
-  100% {{ transform: translate(-40px, -50px) scale(1.06); }}
+  100% {{ transform: translate(-50px, -40px) scale(1.05); }}
 }}
 
-/* نبضة خطية في الخلفية */
 .grid-lines {{
   position: fixed;
   inset: 0;
   background-image:
-    linear-gradient(rgba(255,255,255,0.025) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255,255,255,0.025) 1px, transparent 1px);
-  background-size: 60px 60px;
+    linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
+  background-size: 65px 65px;
   pointer-events: none;
   z-index: 0;
-  animation: gridFade 6s ease-in-out infinite alternate;
+  animation: gridFade 5s ease-in-out infinite alternate;
 }}
-@keyframes gridFade {{
-  0%   {{ opacity: 0.4; }}
-  100% {{ opacity: 0.9; }}
-}}
+@keyframes gridFade {{ 0% {{ opacity: 0.4; }} 100% {{ opacity: 0.8; }} }}
 
 /* ══════════════════════════════════════
-   TOPBAR
+   TOPBAR & HEADER BUTTONS (بيضاء ونصوص نيلي)
 ══════════════════════════════════════ */
 .topbar {{
   display: flex;
@@ -245,7 +228,6 @@ html, body, .stApp {{
   padding-bottom: 14px;
   position: relative;
   z-index: 10;
-  animation: fadeDown 0.5s ease both;
 }}
 
 .brand-mark {{
@@ -261,234 +243,134 @@ html, body, .stApp {{
   overflow: hidden;
 }}
 .brand-mark::after {{
-  content: '';
-  position: absolute;
-  bottom: 0; left: 0; right: 0; height: 2.5px;
+  content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 2.5px;
   background: linear-gradient(90deg, var(--pink), var(--pink-soft));
 }}
 
 .brand-label {{
   font-family: 'IBM Plex Mono', monospace;
   font-size: 11px; letter-spacing: 2.5px;
-  color: var(--steel); text-transform: uppercase;
+  color: #E2E8F0; text-transform: uppercase;
 }}
 
-/* ── Topbar buttons ── */
+/* تعديل أزرار التحكم العلوي: خلفية بيضاء ونصوص نيلي */
 div[data-testid="column"] .stButton > button {{
-  background: var(--bg-deep) !important;
-  color: var(--fog) !important;
-  border: 1px solid var(--border) !important;
+  background: #FFFFFF !important;
+  color: var(--indigo-navy) !important;
+  border: 1px solid #FFFFFF !important;
   border-radius: var(--r-sm) !important;
-  font-size: 13px !important; font-weight: 500 !important;
+  font-size: 13px !important; font-weight: 600 !important;
   padding: 7px 16px !important;
   font-family: {font_main} !important;
   transition: var(--t) !important;
-  backdrop-filter: blur(6px);
-  position: relative; z-index: 10;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.15) !important;
 }}
 div[data-testid="column"] .stButton > button:hover {{
-  background: rgba(232,155,176,0.12) !important;
-  border-color: var(--pink-border) !important;
-  color: var(--pink-soft) !important;
+  background: var(--pink-soft) !important;
+  border-color: var(--pink) !important;
+  color: var(--indigo-navy) !important;
   transform: translateY(-1px) !important;
-  box-shadow: 0 4px 14px var(--pink-glow) !important;
 }}
 
-/* ── Divider ── */
 .hr-line {{
   height: 1px;
   background: linear-gradient(90deg, transparent, var(--border), var(--pink-border), var(--border), transparent);
-  margin: 4px 0 0;
-  position: relative; z-index: 10;
-  animation: shimmer 3s ease-in-out infinite;
+  margin: 4px 0 20px;
 }}
-@keyframes shimmer {{ 0%,100% {{ opacity:0.5; }} 50% {{ opacity:1; }} }}
 
 /* ══════════════════════════════════════
-   HERO
+   HERO & MAIN CTA (زر بدء التحليل أبيض بنيلي)
 ══════════════════════════════════════ */
-.hero {{
-  text-align: center;
-  padding: 52px 20px 28px;
-  position: relative; z-index: 5;
-}}
-
+.hero {{ text-align: center; padding: 40px 20px 20px; position: relative; z-index: 5; }}
 .hero-eyebrow {{
   display: inline-flex; align-items: center; gap: 8px;
-  font-family: 'IBM Plex Mono', monospace;
-  font-size: 11px; letter-spacing: 3px; text-transform: uppercase;
-  color: var(--pink);
-  padding: 6px 18px;
-  border: 1px solid var(--pink-border);
-  border-radius: 30px;
-  background: var(--pink-glow);
-  margin-bottom: 22px;
-  animation: fadeDown 0.6s ease both;
+  font-family: 'IBM Plex Mono', monospace; font-size: 11px; letter-spacing: 3px;
+  color: var(--pink); padding: 6px 18px; border: 1px solid var(--pink-border);
+  border-radius: 30px; background: var(--pink-glow); margin-bottom: 22px;
 }}
-.hero-eyebrow .dot {{
-  width: 6px; height: 6px; border-radius: 50%;
-  background: var(--pink); box-shadow: 0 0 8px var(--pink);
-  animation: pulse 1.8s ease-in-out infinite;
-}}
-@keyframes pulse {{ 0%,100% {{ opacity:1; }} 50% {{ opacity:0.2; }} }}
+.hero-eyebrow .dot {{ width: 6px; height: 6px; border-radius: 50%; background: var(--pink); }}
 
-.hero-title {{
-  font-family: {font_display};
-  font-size: clamp(26px, 4vw, 46px);
-  font-weight: 700; color: var(--white);
-  line-height: 1.22;
-  max-width: 820px; margin: 0 auto 10px;
-  animation: fadeUp 0.65s 0.1s ease both;
-}}
+.hero-title {{ font-family: {font_display}; font-size: clamp(26px, 4vw, 44px); font-weight: 700; color: var(--white); line-height: 1.25; max-width: 820px; margin: 0 auto 10px; }}
 .hero-accent {{
   display: block;
   background: linear-gradient(120deg, var(--pink) 0%, var(--pink-soft) 55%, #fff 100%);
-  -webkit-background-clip: text; -webkit-text-fill-color: transparent;
-  background-clip: text;
-  margin-top: 6px;
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; margin-top: 6px;
 }}
-
-.hero-sub {{
-  color: var(--steel); font-size: 16px; line-height: 1.8;
-  max-width: 650px; margin: 18px auto 0;
-  animation: fadeUp 0.65s 0.2s ease both;
-}}
-
-.badge-wrap {{ display:flex; justify-content:center; margin-top:26px; animation: fadeUp 0.65s 0.3s ease both; }}
-.badge {{
-  display:inline-flex; align-items:center; gap:10px;
-  padding: 10px 22px;
-  border: 1px solid var(--pink-border);
-  background: var(--bg-deep);
-  border-radius: 40px; font-size: 13px; color: var(--fog);
-  box-shadow: 0 0 22px var(--pink-glow);
-}}
+.hero-sub {{ color: #E2E8F0; font-size: 16px; line-height: 1.8; max-width: 650px; margin: 18px auto 0; }}
+.badge-wrap {{ display:flex; justify-content:center; margin-top:26px; }}
+.badge {{ display:inline-flex; align-items:center; gap:10px; padding: 10px 22px; border: 1px solid var(--border); background: var(--bg-deep); border-radius: 40px; font-size: 13px; color: #E2E8F0; }}
 
 /* Stats */
-.stats-row {{
-  display: flex; max-width: 660px; margin: 40px auto 0;
-  border: 1px solid var(--border); border-radius: var(--r-md);
-  overflow: hidden;
-  animation: fadeUp 0.65s 0.4s ease both;
-  position: relative; z-index: 5;
-}}
-.stat-item {{
-  flex: 1; padding: 16px 14px; text-align: center;
-  background: var(--bg-deep);
-  border-right: 1px solid var(--border);
-  transition: var(--t);
-}}
+.stats-row {{ display: flex; max-width: 660px; margin: 35px auto 0; border: 1px solid var(--border); border-radius: var(--r-md); overflow: hidden; position: relative; z-index: 5; }}
+.stat-item {{ flex: 1; padding: 16px 14px; text-align: center; background: var(--bg-deep); border-right: 1px solid var(--border); }}
 .stat-item:last-child {{ border-right: none; }}
-.stat-item:hover {{ background: var(--bg-card); }}
-.stat-val {{
-  font-family: 'IBM Plex Mono', monospace;
-  font-size: 17px; font-weight: 500; color: var(--white);
-}}
-.stat-lbl {{ font-size: 11px; color: var(--steel); margin-top: 4px; text-transform: uppercase; letter-spacing: 0.5px; }}
+.stat-val {{ font-family: 'IBM Plex Mono', monospace; font-size: 17px; font-weight: 600; color: var(--white); }}
+.stat-lbl {{ font-size: 11px; color: var(--steel); margin-top: 4px; text-transform: uppercase; }}
 
-/* CTA */
+/* زر بدء التحليل الرئيسي: أبيض بالكامل ونصوص نيلي */
 .cta-col .stButton > button {{
-  background: linear-gradient(135deg, var(--pink) 0%, #c96b8a 100%) !important;
-  color: #fff !important; border: none !important;
+  background: #FFFFFF !important;
+  color: var(--indigo-navy) !important;
+  border: none !important;
   border-radius: 50px !important;
-  font-size: 16px !important; font-weight: 600 !important;
+  font-size: 16px !important; font-weight: 700 !important;
   padding: 14px 36px !important;
-  box-shadow: 0 8px 30px rgba(232,155,176,0.40) !important;
-  transition: all 0.3s ease !important;
+  box-shadow: 0 8px 25px rgba(0,0,0,0.2) !important;
+  transition: all 0.25s ease !important;
   font-family: {font_main} !important;
-  position: relative; z-index: 10;
 }}
 .cta-col .stButton > button:hover {{
+  background: var(--pink-soft) !important;
+  color: var(--indigo-navy) !important;
   transform: translateY(-3px) scale(1.02) !important;
-  box-shadow: 0 14px 44px rgba(232,155,176,0.55) !important;
+  box-shadow: 0 12px 35px rgba(0,0,0,0.3) !important;
 }}
 
 /* ══════════════════════════════════════
    SECTION HEADER
 ══════════════════════════════════════ */
-.sec-head {{
-  text-align: center; margin: 32px 0 30px;
-  position: relative; z-index: 5;
-  animation: fadeDown 0.5s ease both;
-}}
-.sec-title {{
-  font-family: {font_display};
-  font-size: 28px; font-weight: 700; color: var(--white);
-  margin-bottom: 6px;
-}}
-.sec-sub {{ font-size: 14px; color: var(--steel); }}
+.sec-head {{ text-align: center; margin: 30px 0 25px; position: relative; z-index: 5; }}
+.sec-title {{ font-family: {font_display}; font-size: 28px; font-weight: 700; color: var(--white); margin-bottom: 6px; }}
+.sec-sub {{ font-size: 14px; color: #E2E8F0; }}
 
 /* ══════════════════════════════════════
-   CARDS — رصاصي داكن، نص أبيض واضح
+   لوحة الفريق وموديول المساعدة: كروت بيضاء وكتابة نيلي
 ══════════════════════════════════════ */
 .mcard {{
-  background: var(--bg-card);
-  border: 1px solid var(--border);
-  border-top: 3px solid #5A6478;
+  background: var(--bg-card) !important; /* خلفية بيضاء */
+  border: 1px solid #E2E8F0;
+  border-top: 4px solid var(--indigo-light) !important; /* خط علوي نيلي */
   border-radius: var(--r-md);
-  padding: 22px 20px;
-  margin-bottom: 14px;
-  position: relative; overflow: hidden;
+  padding: 24px 22px;
+  margin-bottom: 16px;
   transition: var(--t);
-  animation: cardIn 0.5s ease both;
   position: relative; z-index: 5;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.1);
 }}
-.mcard.pink {{ border-top-color: var(--pink); }}
-
-@keyframes cardIn {{ from {{ opacity:0; transform: translateY(14px); }} to {{ opacity:1; transform:translateY(0); }} }}
-
-.mcard:nth-child(1) {{ animation-delay: 0.04s; }}
-.mcard:nth-child(2) {{ animation-delay: 0.10s; }}
-.mcard:nth-child(3) {{ animation-delay: 0.16s; }}
-.mcard:nth-child(4) {{ animation-delay: 0.22s; }}
+.mcard.pink {{ border-top-color: var(--pink) !important; }} /* المشرفين بخط وردي مميز */
 
 .mcard:hover {{
   transform: translateY(-4px);
-  border-color: rgba(255,255,255,0.18);
-  box-shadow: var(--shadow-lg);
-  background: var(--bg-card2);
-}}
-.mcard:hover.pink {{ border-top-color: var(--pink-soft); box-shadow: var(--shadow-lg), 0 0 20px var(--pink-glow); }}
-
-/* النص داخل الكروت — أبيض وواضح */
-.mcard-icon {{ font-size: 22px; display: block; margin-bottom: 10px; }}
-
-.mcard-role {{
-  font-family: 'IBM Plex Mono', monospace;
-  font-size: 10px; letter-spacing: 2px; text-transform: uppercase;
-  color: var(--pink);
-  margin-bottom: 5px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.2);
 }}
 
-.mcard-name {{
-  font-size: 16px; font-weight: 600;
-  color: var(--white) !important;   /* أبيض صريح */
-  margin-bottom: 8px;
-}}
-
-.mcard-body {{
-  font-size: 13.5px; line-height: 1.65;
-  color: var(--fog) !important;     /* رمادي فاتح واضح */
-}}
-
-/* ── keyframes عامة ── */
-@keyframes fadeUp   {{ from {{ opacity:0; transform:translateY(10px); }} to {{ opacity:1; transform:translateY(0); }} }}
-@keyframes fadeDown {{ from {{ opacity:0; transform:translateY(-10px); }} to {{ opacity:1; transform:translateY(0); }} }}
+/* نصوص الكروت: نيلي داكن وواضح */
+.mcard-icon {{ font-size: 24px; display: block; margin-bottom: 10px; }}
+.mcard-role {{ font-family: 'IBM Plex Mono', monospace; font-size: 11px; font-weight:600; letter-spacing: 1.5px; text-transform: uppercase; color: var(--pink); margin-bottom: 6px; }}
+.mcard-name {{ font-size: 17px; font-weight: 700; color: var(--indigo-navy) !important; margin-bottom: 8px; }}
+.mcard-body {{ font-size: 14px; line-height: 1.6; color: #4A5568 !important; }}
 
 /* Scrollbar */
 ::-webkit-scrollbar {{ width: 6px; }}
 ::-webkit-scrollbar-track {{ background: var(--bg-deep); }}
-::-webkit-scrollbar-thumb {{ background: var(--bg-card); border-radius: 3px; }}
-::-webkit-scrollbar-thumb:hover {{ background: var(--pink); }}
+::-webkit-scrollbar-thumb {{ background: #718096; border-radius: 3px; }}
 </style>
 
-<!-- خلفية متحركة دائمة -->
 <div class="bg-canvas">
   <div class="grid-lines"></div>
   <div class="orb orb-1"></div>
   <div class="orb orb-2"></div>
   <div class="orb orb-3"></div>
-  <div class="orb orb-4"></div>
 </div>
 """, unsafe_allow_html=True)
 
@@ -530,9 +412,9 @@ else:
 
 st.markdown('<div class="hr-line"></div>', unsafe_allow_html=True)
 
-# ─── VIEW 1: TEAM ────────────────────────────────────────────────────────────
+# ─── VIEW 1: TEAM (كروت بيضاء وكتابة نيلي) ───────────────────────────────────
 if st.session_state.view_titans:
-    sub_txt = "The people behind the intelligence" if not is_ar else "الفريق الذي بنى هذا النظام"
+    sub_txt = "The people behind the intelligence" if not is_ar else "الفريق الهندسي المطور للنظام"
     st.markdown(f'<div class="sec-head"><div class="sec-title">{C["titans_title"]}</div><div class="sec-sub">{sub_txt}</div></div>', unsafe_allow_html=True)
 
     r = C["roles"]
@@ -568,7 +450,7 @@ if st.session_state.view_titans:
               <div class="mcard-body">{body}</div>
             </div>""", unsafe_allow_html=True)
 
-# ─── VIEW 2: HELP ────────────────────────────────────────────────────────────
+# ─── VIEW 2: HELP (كروت بيضاء وكتابة نيلي) ───────────────────────────────────
 elif st.session_state.help:
     sub_txt = "System architecture, datasets, and clinical workflow" if not is_ar else "معمارية النظام، قواعد البيانات، وسير العمل السريري"
     st.markdown(f'<div class="sec-head"><div class="sec-title">{C["about_title"]}</div><div class="sec-sub">{sub_txt}</div></div>', unsafe_allow_html=True)
@@ -610,7 +492,9 @@ else:
     st.markdown(stats_html, unsafe_allow_html=True)
 
     st.markdown("<br><br>", unsafe_allow_html=True)
-    _, mid, _ = st.columns([1, 1.2, 1])
+    
+    # تقسيم الأعمدة بالتناظر الهندسي لوضع الزر في المنتصف الفيت تماماً
+    _, mid, _ = st.columns([1.3, 1, 1.3])
     with mid:
         st.markdown('<div class="cta-col">', unsafe_allow_html=True)
         if st.button(C["begin_btn"], key="begin_analysis_main", use_container_width=True):
