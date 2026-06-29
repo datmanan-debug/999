@@ -214,7 +214,7 @@ div[data-testid="stButton"] button:hover p {{
 .hero {{ text-align: center; padding: 20px 10px 10px; position: relative; z-index: 5; }}
 .hero-title {{ font-family: {font_display}; font-size: clamp(28px, 4vw, 44px); font-weight: 700; color: var(--white); line-height: 1.25; }}
 .hero-accent {{ display: block; background: linear-gradient(120deg, var(--pink) 0%, #F43F5E 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }}
-.hero-sub {{ color: #94A3B8; font-size: 16px; line-height: 1.8; max-width: 700px; margin: 18px auto 0; }}
+.hero-sub {{ color: #94A3B8; font-size: 16px; line-height: 1.8; max-width: 700px; margin: 18px auto 0; text-align: center !important; }}
 .badge-wrap {{ display:flex; justify-content:center; margin-top:22px; }}
 .badge {{ display:inline-flex; align-items:center; gap:10px; padding: 10px 22px; border: 1px solid var(--border); background: var(--bg-deep); border-radius: 40px; font-size: 13px; color: #E2E8F0; }}
 
