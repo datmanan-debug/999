@@ -115,15 +115,15 @@ st.markdown(f"""
 
 /* ── TOKENS ── */
 :root {{
-  --bg:          #0F172A;
-  --bg-deep:     #020617;   
-  --indigo-navy: #111827;
-  --bg-card:     #1E293B;   
+  --bg:          #1E1E1E;
+  --bg-deep:     #141414;
+  --indigo-navy: #2B2B2B;
+  --bg-card:     #2A2A2A;
   --border:      rgba(255,255,255,0.12);
-  --steel:       #94A3B8;   
-  --white:       #F8FAFC;   
-  --pink:        #EC4899;
-  --pink-soft:   #F472B6;
+  --steel:       #9CA3AF;
+  --white:       #F5F5F5;
+  --pink:        #6B7280;
+  --pink-soft:   #9CA3AF;
 }}
 
 footer, header {{ visibility: hidden !important; }}
@@ -148,10 +148,10 @@ html, body, .stApp {{
   display: flex; align-items: center; gap: 12px; padding-bottom: 14px; position: relative; z-index: 10;
 }}
 .brand-mark {{
-  width: 42px; height: 42px; border-radius: 11px; background: var(--bg-deep); border: 1.5px solid rgba(232,155,176,0.3);
+  width: 42px; height: 42px; border-radius: 11px; background: var(--bg-deep); border: 1.5px solid rgba(156,163,175,0.3);
   display: flex; align-items: center; justify-content: center; font-family: 'Lora', serif; font-weight: 700; font-size: 15px; color: var(--white);
 }}
-.brand-label {{ font-family: 'IBM Plex Mono', monospace; font-size: 11px; letter-spacing: 2.5px; color: #94A3B8; }}
+.brand-label {{ font-family: 'IBM Plex Mono', monospace; font-size: 11px; letter-spacing: 2.5px; color: #9CA3AF; }}
 
 div[data-testid="stButton"] button {{
   background-color: #FFFFFF !important;
@@ -172,20 +172,20 @@ div[data-testid="stButton"] button div {{
 }}
 
 div[data-testid="stButton"] button:hover {{
-  background-color: #475569 !important;
-  border-color: #475569 !important;
+  background-color: #6B7280 !important;
+  border-color: #6B7280 !important;
   box-shadow: 0 6px 16px rgba(0,0,0,0.3) !important;
 }}
 div[data-testid="stButton"] button:hover p {{
-  color: #0F172A !important;
+  color: #1E1E1E !important;
 }}
 
 .hr-line {{
-  height: 1px; background: linear-gradient(90deg, transparent, var(--border), rgba(232,155,176,0.3), var(--border), transparent); margin: 4px 0 25px;
+  height: 1px; background: linear-gradient(90deg, transparent, var(--border), rgba(156,163,175,0.3), var(--border), transparent); margin: 4px 0 25px;
 }}
 
 /* ══════════════════════════════════════
-   زر بدء التحليل الوردي
+   زر بدء التحليل
 ══════════════════════════════════════ */
 .cta-container div[data-testid="stButton"] button {{
   background-color: var(--pink) !important;
@@ -193,7 +193,7 @@ div[data-testid="stButton"] button:hover p {{
   border-radius: 50px !important;
   padding: 14px 50px !important;
   width: 100% !important;
-  box-shadow: 0 8px 24px rgba(232,155,176,0.35) !important;
+  box-shadow: 0 8px 24px rgba(107,114,128,0.35) !important;
 }}
 
 .cta-container div[data-testid="stButton"] button p,
@@ -206,17 +206,17 @@ div[data-testid="stButton"] button:hover p {{
 .cta-container div[data-testid="stButton"] button:hover {{
   background-color: var(--pink-soft) !important;
   border-color: var(--pink-soft) !important;
-  box-shadow: 0 10px 28px rgba(244,63,94,0.5) !important;
+  box-shadow: 0 10px 28px rgba(156,163,175,0.5) !important;
   transform: translateY(-2px);
 }}
 
 /* ── HERO & STATS ── */
 .hero {{ text-align: center !important; padding: 20px 10px 10px; position: relative; z-index: 5; margin: 0 auto; }}
 .hero-title {{ font-family: {font_display}; font-size: clamp(28px, 4vw, 44px); font-weight: 700; color: var(--white); line-height: 1.25; text-align: center; }}
-.hero-accent {{ display: block; background: linear-gradient(120deg, var(--pink) 0%, #F43F5E 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; text-align: center; }}
-.hero-sub {{ color: #94A3B8; font-size: 16px; line-height: 1.8; max-width: 750px; margin: 18px auto 0 !important; text-align: center !important; display: block; }}
+.hero-accent {{ display: block; background: linear-gradient(120deg, var(--steel) 0%, #D1D5DB 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; text-align: center; }}
+.hero-sub {{ color: #9CA3AF; font-size: 16px; line-height: 1.8; max-width: 750px; margin: 18px auto 0 !important; text-align: center !important; display: block; }}
 .badge-wrap {{ display:flex; justify-content:center; margin-top:22px; }}
-.badge {{ display:inline-flex; align-items:center; gap:10px; padding: 10px 22px; border: 1px solid var(--border); background: var(--bg-deep); border-radius: 40px; font-size: 13px; color: #E2E8F0; text-align: center; }}
+.badge {{ display:inline-flex; align-items:center; gap:10px; padding: 10px 22px; border: 1px solid var(--border); background: var(--bg-deep); border-radius: 40px; font-size: 13px; color: #E5E7EB; text-align: center; }}
 
 .stats-row {{ display: flex; max-width: 480px; margin: 35px auto 0; border: 1px solid var(--border); border-radius: 14px; overflow: hidden; }}
 .stat-item {{ flex: 1; padding: 16px 14px; text-align: center; background: var(--bg-deep); border-right: 1px solid var(--border); }}
@@ -227,7 +227,7 @@ div[data-testid="stButton"] button:hover p {{
 /* الكروت */
 .sec-head {{ text-align: center; margin: 30px 0 25px; }}
 .sec-title {{ font-family: {font_display}; font-size: 28px; font-weight: 700; color: var(--white); }}
-.sec-sub {{ font-size: 14px; color: #94A3B8; }}
+.sec-sub {{ font-size: 14px; color: #9CA3AF; }}
 
 .mcard {{
   background: var(--bg-card) !important; border-top: 4px solid var(--indigo-navy) !important;
