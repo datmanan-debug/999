@@ -117,7 +117,7 @@ st.markdown(f"""
 :root {{
   --bg:          #F1F2F4;
   --bg-deep:     #E5E7EB;
-  --indigo-navy: #4F46E5;
+  --indigo-navy: #3730A3;
   --bg-card:     #FFFFFF;
   --border:      rgba(15,23,42,0.10);
   --steel:       #6B7280;
@@ -155,7 +155,7 @@ html, body, .stApp {{
 
 div[data-testid="stButton"] button {{
   background-color: #FFFFFF !important;
-  border: 1.5px solid var(--indigo-navy) !important;
+  border: 2.5px solid var(--indigo-navy) !important;
   border-radius: 8px !important;
   padding: 8px 22px !important;
   box-shadow: 0 4px 12px rgba(0,0,0,0.2) !important;
@@ -230,7 +230,7 @@ div[data-testid="stButton"] button:hover p {{
 .sec-sub {{ font-size: 14px; color: #6B7280; }}
 
 .mcard {{
-  background: var(--bg-card) !important; border-top: 4px solid var(--indigo-navy) !important;
+  background: var(--bg-card) !important; border-top: 5px solid var(--indigo-navy) !important;
   border-radius: 14px; padding: 24px 22px; margin-bottom: 16px; box-shadow: 0 4px 15px rgba(0,0,0,0.1);
 }}
 .mcard.pink {{ border-top-color: var(--pink) !important; }}
