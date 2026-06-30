@@ -115,13 +115,13 @@ st.markdown(f"""
 
 /* ── TOKENS ── */
 :root {{
-  --bg:          #F1F2F4;
-  --bg-deep:     #E5E7EB;
+  --bg:          #6B7280;
+  --bg-deep:     #4B5563;
   --indigo-navy: #3730A3;
-  --bg-card:     #9CA3AF;
-  --border:      rgba(15,23,42,0.10);
-  --steel:       #6B7280;
-  --white:       #111827;
+  --bg-card:     #E5E7EB;
+  --border:      rgba(15,23,42,0.15);
+  --steel:       #CBD5E1;
+  --white:       #F8FAFC;
   --pink:        #EC4899;
   --pink-soft:   #F472B6;
 }}
@@ -154,7 +154,7 @@ html, body, .stApp {{
 .brand-label {{ font-family: 'IBM Plex Mono', monospace; font-size: 11px; letter-spacing: 2.5px; color: #9CA3AF; }}
 
 div[data-testid="stButton"] button {{
-  background-color: #9CA3AF !important;
+  background-color: var(--bg-card) !important;
   border: 2.5px solid var(--indigo-navy) !important;
   border-radius: 8px !important;
   padding: 8px 22px !important;
@@ -172,12 +172,12 @@ div[data-testid="stButton"] button div {{
 }}
 
 div[data-testid="stButton"] button:hover {{
-  background-color: #6B7280 !important;
-  border-color: #6B7280 !important;
+  background-color: #F8FAFC !important;
+  border-color: var(--indigo-navy) !important;
   box-shadow: 0 6px 16px rgba(0,0,0,0.3) !important;
 }}
 div[data-testid="stButton"] button:hover p {{
-  color: #1E1E1E !important;
+  color: var(--indigo-navy) !important;
 }}
 
 .hr-line {{
@@ -214,9 +214,9 @@ div[data-testid="stButton"] button:hover p {{
 .hero {{ text-align: center !important; padding: 20px 10px 10px; position: relative; z-index: 5; margin: 0 auto; }}
 .hero-title {{ font-family: {font_display}; font-size: clamp(28px, 4vw, 44px); font-weight: 700; color: var(--white); line-height: 1.25; text-align: center; }}
 .hero-accent {{ display: block; background: linear-gradient(120deg, var(--pink) 0%, #F43F5E 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; text-align: center; }}
-.hero-sub {{ color: #4B5563; font-size: 16px; line-height: 1.8; max-width: 750px; margin: 18px auto 0 !important; text-align: center !important; display: block; }}
+.hero-sub {{ color: #E2E8F0; font-size: 16px; line-height: 1.8; max-width: 750px; margin: 18px auto 0 !important; text-align: center !important; display: block; }}
 .badge-wrap {{ display:flex; justify-content:center; margin-top:22px; }}
-.badge {{ display:inline-flex; align-items:center; gap:10px; padding: 10px 22px; border: 1px solid var(--border); background: var(--bg-deep); border-radius: 40px; font-size: 13px; color: #374151; text-align: center; }}
+.badge {{ display:inline-flex; align-items:center; gap:10px; padding: 10px 22px; border: 1px solid var(--border); background: var(--bg-deep); border-radius: 40px; font-size: 13px; color: #F1F5F9; text-align: center; }}
 
 .stats-row {{ display: flex; max-width: 480px; margin: 35px auto 0; border: 1px solid var(--border); border-radius: 14px; overflow: hidden; }}
 .stat-item {{ flex: 1; padding: 16px 14px; text-align: center; background: var(--bg-deep); border-right: 1px solid var(--border); }}
@@ -227,7 +227,7 @@ div[data-testid="stButton"] button:hover p {{
 /* الكروت */
 .sec-head {{ text-align: center; margin: 30px 0 25px; }}
 .sec-title {{ font-family: {font_display}; font-size: 28px; font-weight: 700; color: var(--white); }}
-.sec-sub {{ font-size: 14px; color: #6B7280; }}
+.sec-sub {{ font-size: 14px; color: #CBD5E1; }}
 
 .mcard {{
   background: var(--bg-card) !important; border-top: 5px solid var(--indigo-navy) !important;
