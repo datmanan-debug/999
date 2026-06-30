@@ -118,7 +118,7 @@ st.markdown(f"""
   --bg:          #F1F2F4;
   --bg-deep:     #E5E7EB;
   --indigo-navy: #3730A3;
-  --bg-card:     #FFFFFF;
+  --bg-card:     #9CA3AF;
   --border:      rgba(15,23,42,0.10);
   --steel:       #6B7280;
   --white:       #111827;
@@ -154,7 +154,7 @@ html, body, .stApp {{
 .brand-label {{ font-family: 'IBM Plex Mono', monospace; font-size: 11px; letter-spacing: 2.5px; color: #9CA3AF; }}
 
 div[data-testid="stButton"] button {{
-  background-color: #FFFFFF !important;
+  background-color: #9CA3AF !important;
   border: 2.5px solid var(--indigo-navy) !important;
   border-radius: 8px !important;
   padding: 8px 22px !important;
@@ -237,7 +237,7 @@ div[data-testid="stButton"] button:hover p {{
 .mcard-icon {{ font-size: 24px; display: block; margin-bottom: 10px; }}
 .mcard-role {{ font-family: {font_main}; font-size: 12px; font-weight: 700; color: var(--pink) !important; margin-bottom: 6px; letter-spacing: 0.5px; }}
 .mcard-name {{ font-size: 17px; font-weight: 700; color: #111827 !important; margin-bottom: 8px; margin-top: 2px; }}
-.mcard-body {{ font-size: 14px; line-height: 1.6; color: #4B5563 !important; }}
+.mcard-body {{ font-size: 14px; line-height: 1.6; color: #1F2937 !important; }}
 </style>
 """, unsafe_allow_html=True)
 
