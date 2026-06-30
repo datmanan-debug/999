@@ -115,15 +115,15 @@ st.markdown(f"""
 
 /* ── TOKENS ── */
 :root {{
-  --bg:          #1E1E1E;
-  --bg-deep:     #141414;
-  --indigo-navy: #2B2B2B;
-  --bg-card:     #2A2A2A;
-  --border:      rgba(255,255,255,0.12);
-  --steel:       #9CA3AF;
-  --white:       #F5F5F5;
-  --pink:        #6B7280;
-  --pink-soft:   #9CA3AF;
+  --bg:          #F1F2F4;
+  --bg-deep:     #E5E7EB;
+  --indigo-navy: #9CA3AF;
+  --bg-card:     #FFFFFF;
+  --border:      rgba(15,23,42,0.10);
+  --steel:       #6B7280;
+  --white:       #111827;
+  --pink:        #EC4899;
+  --pink-soft:   #F472B6;
 }}
 
 footer, header {{ visibility: hidden !important; }}
@@ -213,10 +213,10 @@ div[data-testid="stButton"] button:hover p {{
 /* ── HERO & STATS ── */
 .hero {{ text-align: center !important; padding: 20px 10px 10px; position: relative; z-index: 5; margin: 0 auto; }}
 .hero-title {{ font-family: {font_display}; font-size: clamp(28px, 4vw, 44px); font-weight: 700; color: var(--white); line-height: 1.25; text-align: center; }}
-.hero-accent {{ display: block; background: linear-gradient(120deg, var(--steel) 0%, #D1D5DB 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; text-align: center; }}
-.hero-sub {{ color: #9CA3AF; font-size: 16px; line-height: 1.8; max-width: 750px; margin: 18px auto 0 !important; text-align: center !important; display: block; }}
+.hero-accent {{ display: block; background: linear-gradient(120deg, var(--pink) 0%, #F43F5E 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; text-align: center; }}
+.hero-sub {{ color: #4B5563; font-size: 16px; line-height: 1.8; max-width: 750px; margin: 18px auto 0 !important; text-align: center !important; display: block; }}
 .badge-wrap {{ display:flex; justify-content:center; margin-top:22px; }}
-.badge {{ display:inline-flex; align-items:center; gap:10px; padding: 10px 22px; border: 1px solid var(--border); background: var(--bg-deep); border-radius: 40px; font-size: 13px; color: #E5E7EB; text-align: center; }}
+.badge {{ display:inline-flex; align-items:center; gap:10px; padding: 10px 22px; border: 1px solid var(--border); background: var(--bg-deep); border-radius: 40px; font-size: 13px; color: #374151; text-align: center; }}
 
 .stats-row {{ display: flex; max-width: 480px; margin: 35px auto 0; border: 1px solid var(--border); border-radius: 14px; overflow: hidden; }}
 .stat-item {{ flex: 1; padding: 16px 14px; text-align: center; background: var(--bg-deep); border-right: 1px solid var(--border); }}
@@ -227,7 +227,7 @@ div[data-testid="stButton"] button:hover p {{
 /* الكروت */
 .sec-head {{ text-align: center; margin: 30px 0 25px; }}
 .sec-title {{ font-family: {font_display}; font-size: 28px; font-weight: 700; color: var(--white); }}
-.sec-sub {{ font-size: 14px; color: #9CA3AF; }}
+.sec-sub {{ font-size: 14px; color: #6B7280; }}
 
 .mcard {{
   background: var(--bg-card) !important; border-top: 4px solid var(--indigo-navy) !important;
@@ -236,8 +236,8 @@ div[data-testid="stButton"] button:hover p {{
 .mcard.pink {{ border-top-color: var(--pink) !important; }}
 .mcard-icon {{ font-size: 24px; display: block; margin-bottom: 10px; }}
 .mcard-role {{ font-family: {font_main}; font-size: 12px; font-weight: 700; color: var(--pink) !important; margin-bottom: 6px; letter-spacing: 0.5px; }}
-.mcard-name {{ font-size: 17px; font-weight: 700; color: #FFFFFF !important; margin-bottom: 8px; margin-top: 2px; }}
-.mcard-body {{ font-size: 14px; line-height: 1.6; color: #CBD5E1 !important; }}
+.mcard-name {{ font-size: 17px; font-weight: 700; color: #111827 !important; margin-bottom: 8px; margin-top: 2px; }}
+.mcard-body {{ font-size: 14px; line-height: 1.6; color: #4B5563 !important; }}
 </style>
 """, unsafe_allow_html=True)
 
