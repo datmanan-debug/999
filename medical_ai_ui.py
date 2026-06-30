@@ -117,7 +117,7 @@ st.markdown(f"""
 :root {{
   --bg:          #F1F2F4;
   --bg-deep:     #E5E7EB;
-  --indigo-navy: #9CA3AF;
+  --indigo-navy: #4338CA;
   --bg-card:     #FFFFFF;
   --border:      rgba(15,23,42,0.10);
   --steel:       #6B7280;
