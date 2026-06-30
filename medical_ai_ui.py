@@ -117,7 +117,7 @@ st.markdown(f"""
 :root {{
   --bg:          #F1F2F4;
   --bg-deep:     #E5E7EB;
-  --indigo-navy: #4338CA;
+  --indigo-navy: #4F46E5;
   --bg-card:     #FFFFFF;
   --border:      rgba(15,23,42,0.10);
   --steel:       #6B7280;
@@ -155,7 +155,7 @@ html, body, .stApp {{
 
 div[data-testid="stButton"] button {{
   background-color: #FFFFFF !important;
-  border: 1px solid #FFFFFF !important;
+  border: 1.5px solid var(--indigo-navy) !important;
   border-radius: 8px !important;
   padding: 8px 22px !important;
   box-shadow: 0 4px 12px rgba(0,0,0,0.2) !important;
