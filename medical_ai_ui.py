@@ -18,7 +18,9 @@ if "view_titans" not in st.session_state:
 loc = {
     "EN": {
         "title": "AI-Powered Mammogram Analysis",
-        "title_accent": "Early Breast Cancer Classification",
+        "title_accent_pre": "Early ",
+        "title_accent_pink": "Breast Cancer",
+        "title_accent_post": " Classification",
         "sub": "A decision-support assistant that helps healthcare professionals review mammogram images and flag patterns worth a closer look. Built to support clinical judgment, never to replace it.",
         "badge": "Decision support only — final diagnosis remains with the physician",
         "begin_btn": "Begin Analysis →",
@@ -59,7 +61,9 @@ loc = {
     },
     "AR": {
         "title": "تحليل صور الماموجرام بالذكاء الاصطناعي",
-        "title_accent": "التصنيف المبكر لسرطان الثدي",
+        "title_accent_pre": "التصنيف المبكر لـ ",
+        "title_accent_pink": "سرطان الثدي",
+        "title_accent_post": "",
         "sub": "مساعد لدعم اتخاذ القرار يساعد المتخصصين في الرعاية الصحية على مراجعة صور الماموجرام وتحديد الأنماط التي تستحق نظرة فاحصة. تم بناؤه لدعم الحكم السريري الطبي، وليس لاستبداله أبداً.",
         "badge": "لدعم القرار فقط — التشخيص النهائي يبقى من اختصاص الطبيب",
         "begin_btn": "← بدء التحليل",
@@ -121,7 +125,7 @@ st.markdown(f"""
   --bg-card:     #E5E7EB;
   --border:      rgba(15,23,42,0.10);
   --steel:       #6B7280;
-  --white:       #111827;
+  --white:       #374151;
   --pink:        #EC4899;
   --pink-soft:   #F472B6;
 }}
@@ -151,7 +155,7 @@ html, body, .stApp {{
   width: 42px; height: 42px; border-radius: 11px; background: var(--bg-deep); border: 1.5px solid rgba(156,163,175,0.3);
   display: flex; align-items: center; justify-content: center; font-family: 'Lora', serif; font-weight: 700; font-size: 15px; color: var(--white);
 }}
-.brand-label {{ font-family: 'IBM Plex Mono', monospace; font-size: 11px; letter-spacing: 2.5px; color: #9CA3AF; }}
+.brand-label {{ font-family: 'IBM Plex Mono', monospace; font-size: 11px; letter-spacing: 2.5px; color: #374151; font-weight: 600; }}
 
 div[data-testid="stButton"] button {{
   background-color: #4B5563 !important;
@@ -213,7 +217,9 @@ div[data-testid="stButton"] button:hover p {{
 /* ── HERO & STATS ── */
 .hero {{ text-align: center !important; padding: 20px 10px 10px; position: relative; z-index: 5; margin: 0 auto; }}
 .hero-title {{ font-family: {font_display}; font-size: clamp(28px, 4vw, 44px); font-weight: 700; color: var(--white); line-height: 1.25; text-align: center; }}
-.hero-accent {{ display: block; background: linear-gradient(120deg, var(--pink) 0%, #F43F5E 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; text-align: center; }}
+.hero-accent {{ display: block; }}
+.hero-accent-gray {{ color: var(--white); }}
+.hero-accent-pink {{ background: linear-gradient(120deg, var(--pink) 0%, #F43F5E 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }}
 .hero-sub {{ color: #4B5563; font-size: 16px; line-height: 1.8; max-width: 750px; margin: 18px auto 0 !important; text-align: center !important; display: block; }}
 .badge-wrap {{ display:flex; justify-content:center; margin-top:22px; }}
 .badge {{ display:inline-flex; align-items:center; gap:10px; padding: 10px 22px; border: 1px solid var(--border); background: var(--bg-deep); border-radius: 40px; font-size: 13px; color: #374151; text-align: center; }}
@@ -367,7 +373,7 @@ else:
     <div class="hero">
       <div class="hero-title">
         {C['title']}
-        <span class="hero-accent">{C['title_accent']}</span>
+        <span class="hero-accent">{C['title_accent_pre']}<span class="hero-accent-pink">{C['title_accent_pink']}</span>{C['title_accent_post']}</span>
       </div>
       <center><p class="hero-sub">{C['sub']}</p></center>
       <div class="badge-wrap"><div class="badge">🎀 {C['badge']}</div></div>
